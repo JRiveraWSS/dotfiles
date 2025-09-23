@@ -1,0 +1,91 @@
+;; Kanata Tarmak for ANSI QWERTY -> Colemak-DH
+;; Layers included: qwerty, tarmak1..tarmak4, colemak
+;; Source (physical) key order: QWERTY letters & punctuation rows.
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  grv 1 2 3 4 5 6 7 8 9 0 - = bspc
+  tab q w e r t y u i o p [ ] \
+  caps a s d f g h j k l ; ' ret
+  lsft z x c v b n m , . / rsft
+  lctl lmet lalt spc ralt rctl
+)
+
+;; Tarmak2
+(deflayermap (tarmak2)
+  q q w w e f r r t b
+  a a s s d d f t g g h m j n k e l l ; ;
+  z x x c c j v v b z n k m h , , . . / /
+
+  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
+  ___ _
+)
+
+;; Tarmak1
+(deflayermap (tarmak1)
+  q q w w e j r r t t
+  a a s s d d f f g g h m j n k e l l ; ;
+  z z x x c c v v b b n k m h , , . . / /
+
+  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
+  ___ _
+)
+
+;; QWERTY
+(deflayermap (qwerty)
+  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
+  ___ _
+)
+
+
+;; Tarmak3
+(deflayermap (tarmak3)
+  q q w w e f r j t b
+  a a s r d s f t g g h m j n k e l l ; ;
+  z x x c c d v v b z n k m h , , . . / /
+
+  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
+  ___ _
+)
+
+;; Tarmak4
+(deflayermap (tarmak4)
+  q q w w e f r p t b y j u u i i o y p ;
+  a a s r d s f t g g h m j n k e l l ; o
+  z x x c c d v v b z n k m h , , . . / /
+
+  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
+  ___ _
+)
+
+;; Colemak-DH
+(deflayermap (colemakdh)
+  q q w w e f r p t b y j u l i u o y p ;
+  a a s r d s f t g g h m j n k e l i ; o
+  z x x c c d v v b z n k m h , , . . / /
+
+  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
+  ___ _
+)
+
+;; Quick layer switch hotkeys
+;; Hold Caps+number (1-5) to jump to a stage.
+(defalias
+  to-qw (layer-switch qwerty)
+  to-t1 (layer-switch tarmak1)
+  to-t2 (layer-switch tarmak2)
+  to-t3 (layer-switch tarmak3)
+  to-t4 (layer-switch tarmak4)
+  to-dh (layer-switch colemakdh)
+)
+
+;; Caps-hold menu layer
+(deflayermap (caps-menu)
+  1 @to-t1 2 @to-t2 3 @to-t3 4 @to-t4 5 @to-dh
+  0 @to-qw
+  ___ _
+)
+
