@@ -14,6 +14,16 @@
   lctl lmet lalt spc ralt rctl
 )
 
+;; Tarmak3
+(deflayermap (tarmak3)
+  q q w w e f r j t b
+  a a s r d s f t g g h m j n k e l l ; ;
+  z x x c c d v v b z n k m h , , . . / /
+
+  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
+  ___ _
+)
+
 ;; Tarmak2
 (deflayermap (tarmak2)
   q q w w e f r r t b
@@ -41,15 +51,6 @@
 )
 
 
-;; Tarmak3
-(deflayermap (tarmak3)
-  q q w w e f r j t b
-  a a s r d s f t g g h m j n k e l l ; ;
-  z x x c c d v v b z n k m h , , . . / /
-
-  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
-  ___ _
-)
 
 ;; Tarmak4
 (deflayermap (tarmak4)

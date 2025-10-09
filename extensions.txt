@@ -1,0 +1,303 @@
+[blur-my-shell]
+settings-version=2
+
+[blur-my-shell/appfolder]
+brightness=0.59999999999999998
+sigma=60
+
+[blur-my-shell/applications]
+blur=true
+brightness=0.59999999999999998
+dynamic-opacity=true
+enable-all=true
+opacity=200
+sigma=13
+
+[blur-my-shell/coverflow-alt-tab]
+pipeline='pipeline_default'
+
+[blur-my-shell/dash-to-dock]
+blur=false
+brightness=0.59999999999999998
+pipeline='pipeline_default_rounded'
+sigma=30
+static-blur=true
+style-dash-to-dock=0
+
+[blur-my-shell/dash-to-panel]
+blur-original-panel=true
+
+[blur-my-shell/lockscreen]
+pipeline='pipeline_default'
+
+[blur-my-shell/overview]
+pipeline='pipeline_default'
+style-components=2
+
+[blur-my-shell/panel]
+blur=false
+brightness=1.0
+pipeline='pipeline_default'
+sigma=30
+static-blur=false
+
+[blur-my-shell/screenshot]
+pipeline='pipeline_default'
+
+[blur-my-shell/window-list]
+brightness=0.59999999999999998
+sigma=30
+
+[dash-in-panel]
+dim-dot=false
+move-date=false
+show-apps=false
+
+[dash-to-dock]
+background-opacity=0.80000000000000004
+custom-theme-shrink=true
+dash-max-icon-size=48
+dock-fixed=false
+dock-position='BOTTOM'
+extend-height=false
+height-fraction=0.90000000000000002
+hot-keys=false
+intellihide-mode='ALL_WINDOWS'
+preferred-monitor=-2
+preferred-monitor-by-connector='eDP-1'
+running-indicator-style='DASHES'
+show-apps-at-top=true
+show-mounts=false
+
+[ding]
+show-home=false
+
+[just-perfection]
+accessibility-menu=false
+animation=2
+background-menu=false
+clock-menu-position=2
+clock-menu-position-offset=1
+dash-separator=false
+keyboard-layout=false
+notification-banner-position=2
+power-icon=false
+quick-settings-dark-mode=false
+quick-settings-night-light=false
+ripple-box=false
+startup-status=0
+top-panel-position=0
+weather=false
+window-demands-attention-focus=true
+window-preview-caption=false
+workspace-wrap-around=true
+world-clock=false
+
+[openbar]
+accent-override=false
+auto-bgalpha=false
+autofg-bar=false
+autofg-menu=false
+autohg-bar=true
+autohg-menu=true
+autotheme-dark='Dark'
+autotheme-font=true
+autotheme-light='Dark'
+autotheme-refresh=true
+bartype='Islands'
+bcolor=['0.910', '0.749', '0.714']
+bg-change=true
+bgalpha=0.0
+bgcolor=['0.412', '0.243', '0.412']
+bgcolor-wmax=['0.118', '0.118', '0.118']
+bgcolor2=['0.396', '0.306', '0.357']
+bgpalette=true
+bguri='file:///usr/share/backgrounds/Little_numbat_boy_by_azskalt.png'
+bottom-margin=0.0
+boxalpha=0.0
+boxcolor=['0.412', '0.243', '0.412']
+count1=254504
+count10=2463
+count11=4
+count12=1
+count2=116728
+count3=51554
+count4=44238
+count5=29254
+count6=26041
+count7=15901
+count8=11048
+count9=10264
+dark-bcolor=['0.910', '0.749', '0.714']
+dark-bgcolor=['0.412', '0.243', '0.412']
+dark-bgcolor-wmax=['0.118', '0.118', '0.118']
+dark-bgcolor2=['0.396', '0.306', '0.357']
+dark-bguri='file:///usr/share/backgrounds/Little_numbat_boy_by_azskalt.png'
+dark-boxcolor=['0.412', '0.243', '0.412']
+dark-hcolor=['0.600', '0.757', '0.945']
+dark-hscd-color=['0.922', '0.475', '0.561']
+dark-iscolor=['0.412', '0.243', '0.412']
+dark-mbcolor=['0.984', '0.584', '0.729']
+dark-mbgcolor=['0.220', '0.118', '0.204']
+dark-mhcolor=['0.984', '0.584', '0.729']
+dark-mscolor=['0.922', '0.475', '0.561']
+dark-mshcolor=['0.000', '0.000', '0.000']
+dark-palette1=['241', '121', '144']
+dark-palette10=['124', '74', '124']
+dark-palette11=['124', '116', '112']
+dark-palette12=['132', '76', '76']
+dark-palette2=['117', '63', '108']
+dark-palette3=['194', '89', '132']
+dark-palette4=['153', '83', '123']
+dark-palette5=['207', '87', '98']
+dark-palette6=['251', '149', '186']
+dark-palette7=['241', '151', '163']
+dark-palette8=['139', '65', '101']
+dark-palette9=['233', '191', '182']
+dark-shcolor=['0.000', '0.000', '0.000']
+dark-smbgcolor=['0.396', '0.306', '0.357']
+dark-vw-color=['0.922', '0.475', '0.561']
+dark-winbcolor=['0.922', '0.475', '0.561']
+default-font='Sans 12'
+fgalpha=1.0
+fitts-widgets=false
+hcolor=['0.600', '0.757', '0.945']
+hscd-color=['0.922', '0.475', '0.561']
+import-export=false
+isalpha=0.94999999999999996
+iscolor=['0.412', '0.243', '0.412']
+light-bcolor=['0.980', '0.584', '0.725']
+light-bgcolor=['0.412', '0.243', '0.412']
+light-bgcolor-wmax=['0.922', '0.922', '0.922']
+light-bgcolor2=['0.396', '0.306', '0.357']
+light-bguri='file:///usr/share/backgrounds/Little_numbat_boy_by_azskalt.png'
+light-boxcolor=['0.412', '0.243', '0.412']
+light-hcolor=['0.545', '0.255', '0.396']
+light-hscd-color=['0.922', '0.475', '0.561']
+light-iscolor=['0.412', '0.243', '0.412']
+light-mbcolor=['0.545', '0.255', '0.396']
+light-mbgcolor=['0.220', '0.118', '0.204']
+light-mhcolor=['0.545', '0.255', '0.396']
+light-mscolor=['0.922', '0.475', '0.561']
+light-mshcolor=['0.000', '0.000', '0.000']
+light-palette1=['241', '121', '144']
+light-palette10=['124', '74', '124']
+light-palette11=['124', '116', '112']
+light-palette12=['132', '76', '76']
+light-palette2=['117', '63', '108']
+light-palette3=['194', '89', '132']
+light-palette4=['153', '83', '123']
+light-palette5=['207', '87', '98']
+light-palette6=['251', '149', '186']
+light-palette7=['241', '151', '163']
+light-palette8=['139', '65', '101']
+light-palette9=['233', '191', '182']
+light-shcolor=['0.000', '0.000', '0.000']
+light-smbgcolor=['0.396', '0.306', '0.357']
+light-vw-color=['0.922', '0.475', '0.561']
+light-winbcolor=['0.922', '0.475', '0.561']
+margin=0.0
+mbcolor=['0.984', '0.584', '0.729']
+mbgcolor=['0.220', '0.118', '0.204']
+mfgalpha=1.0
+mhcolor=['0.984', '0.584', '0.729']
+monitor-height=1600
+monitor-width=2560
+mscolor=['0.922', '0.475', '0.561']
+mshcolor=['0.000', '0.000', '0.000']
+palette1=['241', '121', '144']
+palette10=['124', '74', '124']
+palette11=['124', '116', '112']
+palette12=['132', '76', '76']
+palette2=['117', '63', '108']
+palette3=['194', '89', '132']
+palette4=['153', '83', '123']
+palette5=['207', '87', '98']
+palette6=['251', '149', '186']
+palette7=['241', '151', '163']
+palette8=['139', '65', '101']
+palette9=['233', '191', '182']
+pause-reload=false
+reloadstyle=false
+set-fullscreen=false
+set-notif-position=true
+set-overview=true
+shadow=false
+shcolor=['0.000', '0.000', '0.000']
+smbgcolor=['0.396', '0.306', '0.357']
+smbgoverride=false
+trigger-autotheme=false
+trigger-reload=false
+vw-color=['0.922', '0.475', '0.561']
+winbcolor=['0.922', '0.475', '0.561']
+
+[quick-settings-tweaks]
+media-enabled=false
+
+[space-bar/appearance]
+application-styles='.space-bar {\n  -natural-hpadding: 12px;\n}\n\n.space-bar-workspace-label.active {\n  margin: 0 4px;\n  background-color: rgba(255,255,255,0.3);\n  color: rgba(255,255,255,1);\n  border-color: rgba(0,0,0,0);\n  font-weight: 700;\n  border-radius: 4px;\n  border-width: 0px;\n  padding: 3px 8px;\n}\n\n.space-bar-workspace-label.inactive {\n  margin: 0 4px;\n  background-color: rgba(0,0,0,0);\n  color: rgba(255,255,255,1);\n  border-color: rgba(0,0,0,0);\n  font-weight: 700;\n  border-radius: 4px;\n  border-width: 0px;\n  padding: 3px 8px;\n}\n\n.space-bar-workspace-label.inactive.empty {\n  margin: 0 4px;\n  background-color: rgba(0,0,0,0);\n  color: rgba(255,255,255,0.5);\n  border-color: rgba(0,0,0,0);\n  font-weight: 700;\n  border-radius: 4px;\n  border-width: 0px;\n  padding: 3px 8px;\n}'
+
+[space-bar/behavior]
+indicator-style='workspaces-bar'
+smart-workspace-names=false
+
+[space-bar/shortcuts]
+back-and-forth=false
+enable-move-to-workspace-shortcuts=true
+
+[space-bar/state]
+version=34
+
+[switcher]
+launcher-stats='{"com.mattjakeman.ExtensionManager.desktop":1,"org.gnome.Settings.desktop":1}'
+show-switcher=['<Super>space']
+
+[tactile]
+gap-size=10
+
+[tiling-assistant]
+activate-layout0=@as []
+activate-layout1=@as []
+activate-layout2=@as []
+activate-layout3=@as []
+active-window-hint=0
+active-window-hint-color='rgb(211,70,21)'
+auto-tile=@as []
+center-window=@as []
+debugging-free-rects=@as []
+debugging-show-tiled-rects=@as []
+default-move-mode=0
+dynamic-keybinding-behavior=0
+last-version-installed=46
+maximize-with-gap=true
+overridden-settings={'org.gnome.mutter.edge-tiling': <@mb nothing>}
+restore-window=['<Super>Down']
+search-popup-layout=@as []
+single-screen-gap=18
+tile-bottom-half=['<Super>KP_2']
+tile-bottom-half-ignore-ta=@as []
+tile-bottomleft-quarter=['<Super>KP_1']
+tile-bottomleft-quarter-ignore-ta=@as []
+tile-bottomright-quarter=['<Super>KP_3']
+tile-bottomright-quarter-ignore-ta=@as []
+tile-edit-mode=@as []
+tile-left-half=['<Super>Left', '<Super>KP_4']
+tile-left-half-ignore-ta=@as []
+tile-maximize=['<Super>Up', '<Super>KP_5']
+tile-maximize-horizontally=@as []
+tile-maximize-vertically=@as []
+tile-right-half=['<Super>Right', '<Super>KP_6']
+tile-right-half-ignore-ta=@as []
+tile-top-half=['<Super>KP_8']
+tile-top-half-ignore-ta=@as []
+tile-topleft-quarter=['<Super>KP_7']
+tile-topleft-quarter-ignore-ta=@as []
+tile-topright-quarter=['<Super>KP_9']
+tile-topright-quarter-ignore-ta=@as []
+tiling-popup-all-workspace=true
+toggle-always-on-top=@as []
+toggle-tiling-popup=@as []
+window-gap=18
+
+[unblank]
+time=0
