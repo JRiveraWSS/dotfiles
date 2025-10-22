@@ -14,6 +14,26 @@
   lctl lmet lalt spc ralt rctl
 )
 
+;; Colemak-DH
+(deflayermap (colemakdh)
+  q q w w e f r p t b y j u l i u o y p ;
+  a a s r d s f t g g h m j n k e l i ; o
+  z x x c c d v v b z n k m h , , . . / /
+
+  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
+  ___ _
+)
+
+;; Tarmak4
+(deflayermap (tarmak4)
+  q q w w e f r p t b y j u u i i o y p ;
+  a a s r d s f t g g h m j n k e l l ; o
+  z x x c c d v v b z n k m h , , . . / /
+
+  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
+  ___ _
+)
+
 ;; Tarmak3
 (deflayermap (tarmak3)
   q q w w e f r j t b
@@ -46,28 +66,6 @@
 
 ;; QWERTY
 (deflayermap (qwerty)
-  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
-  ___ _
-)
-
-
-
-;; Tarmak4
-(deflayermap (tarmak4)
-  q q w w e f r p t b y j u u i i o y p ;
-  a a s r d s f t g g h m j n k e l l ; o
-  z x x c c d v v b z n k m h , , . . / /
-
-  caps (tap-hold 200 200 esc (layer-while-held caps-menu))
-  ___ _
-)
-
-;; Colemak-DH
-(deflayermap (colemakdh)
-  q q w w e f r p t b y j u l i u o y p ;
-  a a s r d s f t g g h m j n k e l i ; o
-  z x x c c d v v b z n k m h , , . . / /
-
   caps (tap-hold 200 200 esc (layer-while-held caps-menu))
   ___ _
 )

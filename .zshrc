@@ -85,3 +85,6 @@ if [[ $- == *i* ]]; then
 fi
 
 eval "$(starship init zsh)"
+
+# opencode
+export PATH=/home/jrivera/.opencode/bin:$PATH
