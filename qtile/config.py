@@ -78,11 +78,11 @@ keys = [
 group_names = [
     "  ",
     "  ",
+    "  ",
     "  ",
     "  ",
     "  ",
     "  ",
-    "  ",
     "  ",
     "  ",
 ]
@@ -145,7 +145,7 @@ floating_layout = layout.Floating(
 # --------------------------------------------------------------
 widget_defaults = dict(
     font="JetBrainsMono Nerd Font",
-    fontsize=13,
+    fontsize=19,
     padding=6,
     foreground=colors["fg"],
 )
@@ -182,6 +182,29 @@ def top_bar():
                 fontsize=19,
             ),
             widget.Spacer(),
+            widget.Clock(
+                format="%Y-%m-%d  %H:%M",
+                foreground=colors["magenta"],
+                padding=8,
+                fontsize=19,
+            ),
+            widget.Spacer(),
+            widget.PulseVolume(
+                channel="Master",
+                fmt="  {}",
+                foreground=colors["fg"],
+                padding=6,
+                fontsize=19,
+            ),
+            widget.TextBox(text="|", foreground=colors["grey"], padding=6),
+            widget.Battery(
+                format="{percent:2.0%}",
+                foreground=colors["fg"],
+                padding=6,
+                low_percentage=0.2,
+                fontsize=19,
+            ),
+            widget.TextBox(text="|", foreground=colors["grey"], padding=6),
             # Status widgets (right)
             widget.CPU(
                 format="CPU {load_percent:.0f}%",
@@ -204,31 +227,8 @@ def top_bar():
                 update_interval=3,
                 fontsize=19,
             ),
-            widget.Spacer(),
-            widget.PulseVolume(
-                channel="Master",
-                fmt=" {}",
-                foreground=colors["fg"],
-                padding=6,
-                fontsize=19,
-            ),
             widget.TextBox(text="|", foreground=colors["grey"], padding=6),
-            widget.Battery(
-                format="{percent:2.0%}",
-                foreground=colors["fg"],
-                padding=6,
-                low_percentage=0.2,
-                fontsize=19,
-            ),
-            widget.TextBox(text="|", foreground=colors["grey"], padding=6),
-            widget.Systray(icon_size=19, padding=6),
-            widget.TextBox(text="|", foreground=colors["grey"], padding=6),
-            widget.Clock(
-                format="%Y-%m-%d  %H:%M",
-                foreground=colors["magenta"],
-                padding=8,
-                fontsize=19,
-            ),
+            widget.Systray(icon_size=20, padding=6),
             widget.TextBox(
                 text="",
                 foreground=colors["red"],
@@ -237,7 +237,7 @@ def top_bar():
                 mouse_callbacks={"Button1": lazy.spawn(launcher)},
             ),
         ],
-        size=24,
+        size=30,
         margin=[4, 8, 2, 8],
         background=colors["bg_dark"],
         opacity=1.0,
