@@ -70,6 +70,13 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     # System
     Key([], "Print", lazy.spawn("flameshot gui"), desc="Screenshot"),
+    # Volume control
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"), desc="Increase volume"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"), desc="Decrease volume"),
+    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"), desc="Mute/Unmute"),
+    # Brightness control
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%"), desc="Increase brightness"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-"), desc="Decrease brightness"),
 ]
 
 # --------------------------------------------------------------
@@ -189,9 +196,17 @@ def top_bar():
                 fontsize=19,
             ),
             widget.Spacer(),
+            widget.Backlight(
+                backlight_name="auto",
+                fmt="  {}",
+                foreground=colors["yellow"],
+                padding=6,
+                fontsize=19,
+            ),
+            widget.TextBox(text="|", foreground=colors["grey"], padding=6),
             widget.PulseVolume(
                 channel="Master",
-                fmt="  {}",
+                fmt="  {}",
                 foreground=colors["fg"],
                 padding=6,
                 fontsize=19,
@@ -275,6 +290,7 @@ def autostart():
         "picom --experimental-backends",
         "blueman-applet",
         "flameshot",
+        "feh --bg-scale ~/Pictures/desktop-wallpaper-omega-squad-teemo.jpg",
     ]
     for c in cmds:
         try:
