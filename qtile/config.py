@@ -197,8 +197,8 @@ def top_bar():
             ),
             widget.Spacer(),
             widget.Backlight(
-                backlight_name="auto",
-                fmt="  {}",
+                backlight_name="nvidia_wmi_ec_backlight",
+                fmt="󰃞 {}",
                 foreground=colors["yellow"],
                 padding=6,
                 fontsize=19,
@@ -206,14 +206,14 @@ def top_bar():
             widget.TextBox(text="|", foreground=colors["grey"], padding=6),
             widget.PulseVolume(
                 channel="Master",
-                fmt="  {}",
+                fmt="󰕾 {}",
                 foreground=colors["fg"],
                 padding=6,
                 fontsize=19,
             ),
             widget.TextBox(text="|", foreground=colors["grey"], padding=6),
             widget.Battery(
-                format="{percent:2.0%}",
+                format="󰁹 {percent:2.0%}",
                 foreground=colors["fg"],
                 padding=6,
                 low_percentage=0.2,
@@ -287,10 +287,10 @@ def autostart():
 
     cmds = [
         "nm-applet",
-        "picom --experimental-backends",
+        "picom --config ~/.config/picom/picom.conf",
         "blueman-applet",
         "flameshot",
-        "feh --bg-scale ~/Pictures/desktop-wallpaper-omega-squad-teemo.jpg",
+        "~/.fehbg",
     ]
     for c in cmds:
         try:
