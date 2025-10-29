@@ -15,6 +15,7 @@ This repository contains configuration files for a complete Linux development se
 - **Keyboard Layout**: Kanata with Tarmak progression to Colemak-DH
 - **Launcher**: Rofi with Tokyo Night Storm theme (grid view, icons)
 - **Power Menu**: Rofi-based power menu with Tokyo Night Storm theme
+- **Lock Screen**: i3lock-color with live clock and blurred wallpaper
 
 ## Theme
 
@@ -23,6 +24,7 @@ This repository contains configuration files for a complete Linux development se
 - Ghostty terminal
 - Qtile window manager
 - Rofi launcher and menus
+- i3lock-color lock screen
 - Zellij multiplexer
 - Zsh syntax highlighting
 
@@ -156,6 +158,8 @@ Key bindings:
 - `Mod+b`: Launch browser (Chrome)
 - `Mod+r`: Launch Rofi
 - `Mod+e`: Launch file manager (Thunar)
+- `Mod+s`: Launch Slack
+- `Mod+l`: Lock screen (blurred wallpaper)
 - `Mod+Shift+e`: Power menu
 - `Mod+q`: Kill window
 - `Mod+1-9`: Switch workspace
@@ -247,6 +251,60 @@ Configuration:
 - Theme: `rofi/tokyo-night-storm.rasi`
 - Customize: grid size (columns/lines), icon size, colors, fonts
 
+### Lock Screen
+
+**Location**: `scripts/lock.sh`
+
+Custom i3lock-color screen locker with blurred wallpaper and live clock display.
+
+Features:
+
+- **Live Updating Clock**: Displays current time in 12-hour format with AM/PM (e.g., 02:30:45 PM)
+- **Date Display**: Shows full day and date (e.g., "Wednesday, October 29")
+- **Blurred Wallpaper**: Scales wallpaper to full screen (2560x1600) with medium blur effect
+- **Tokyo Night Storm Colors**: 
+  - Cyan blue clock and unlock ring (#7aa2f7)
+  - Dark background with transparency (#1a1b26)
+  - Red highlight for wrong password (#f7768e)
+- **Centered Indicator**: 120px radius circle with 8px ring width
+- **Custom Fonts**: JetBrainsMono Nerd Font (72px time, 24px date)
+
+Usage:
+
+- `Mod+l`: Quick lock screen
+- Power menu → Lock option
+- Or run directly: `~/dotfiles/scripts/lock.sh`
+
+Requirements:
+
+- **i3lock-color**: Enhanced screen locker with clock/color support
+- **ImageMagick**: For blur and wallpaper scaling (`convert` command)
+
+Install dependencies:
+
+```bash
+# Ubuntu/Debian - Build i3lock-color from source
+sudo apt install -y autoconf gcc make pkg-config libpam0g-dev libcairo2-dev \
+  libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev \
+  libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev \
+  libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev
+
+cd /tmp
+git clone https://github.com/Raymo111/i3lock-color.git
+cd i3lock-color
+./install-i3lock-color.sh
+
+# Also install ImageMagick
+sudo apt install imagemagick
+
+# Arch
+yay -S i3lock-color imagemagick
+
+# Fedora
+sudo dnf copr enable admiralnemo/i3lock-color
+sudo dnf install i3lock-color ImageMagick
+```
+
 ### Kanata
 
 **Location**: `kanata/kanata.kbd`
@@ -284,16 +342,7 @@ Usage:
 - `Mod+Shift+e`: Open power menu
 - Or run directly: `~/dotfiles/scripts/powermenu.sh`
 
-The power menu requires a lock screen utility (i3lock or betterlockscreen) for the lock option. Install one with:
-
-```bash
-# i3lock
-sudo apt install i3lock  # Debian/Ubuntu
-sudo pacman -S i3lock    # Arch
-
-# Or betterlockscreen (recommended)
-yay -S betterlockscreen
-```
+The power menu integrates with the custom lock screen script (`scripts/lock.sh`) which uses i3lock-color. See the Lock Screen section for installation details.
 
 ### GNOME Extensions (if applicable)
 

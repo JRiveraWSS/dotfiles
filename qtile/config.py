@@ -13,6 +13,8 @@ terminal = "ghostty"
 browser = "google-chrome"
 launcher = "rofi -show drun"
 file_manager = "thunar"
+slack = "slack"
+lock_command = expanduser("~/dotfiles/scripts/lock.sh")
 powermenu = expanduser("~/dotfiles/scripts/powermenu.sh")
 
 # --------------------------------------------------------------
@@ -67,11 +69,13 @@ keys = [
     Key([mod], "b", lazy.spawn(browser), desc="Open browser"),
     Key([mod], "r", lazy.spawn(launcher), desc="Launcher"),
     Key([mod], "e", lazy.spawn(file_manager), desc="File manager"),
+    Key([mod], "s", lazy.spawn(slack), desc="Open Slack"),
     Key([mod, "shift"], "e", lazy.spawn(powermenu), desc="Power menu"),
     # Qtile
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     # System
+    Key([mod], "l", lazy.spawn(lock_command), desc="Lock screen"),
     Key([], "Print", lazy.spawn("flameshot gui"), desc="Screenshot"),
     # Volume control
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"), desc="Increase volume"),

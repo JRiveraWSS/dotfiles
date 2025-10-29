@@ -91,15 +91,8 @@ SELECTED=$(printf "${LOCK}\n${LOGOUT}\n${REBOOT}\n${SHUTDOWN}\n${SUSPEND}\n" | \
 # Execute selected option
 case $SELECTED in
     $LOCK)
-        # Lock screen - you can change this to your preferred lock command
-        # Examples: i3lock, betterlockscreen, etc.
-        if command -v i3lock &> /dev/null; then
-            i3lock -c 24283b
-        elif command -v betterlockscreen &> /dev/null; then
-            betterlockscreen -l
-        else
-            notify-send "Lock" "No lock screen utility found. Install i3lock or betterlockscreen."
-        fi
+        # Lock screen with blurred wallpaper
+        ~/dotfiles/scripts/lock.sh
         ;;
     $LOGOUT)
         # Qtile logout
