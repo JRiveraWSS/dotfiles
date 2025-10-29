@@ -1,0 +1,251 @@
+/*******************************************************************************
+ * TOKYO NIGHT STORM THEME FOR ROFI
+ * A modern, clean theme matching the Qtile Tokyo Night Storm setup
+ * 
+ * Features:
+ * - Grid layout for application icons
+ * - Rounded corners and transparency
+ * - Smooth hover/selection states
+ * - Color-coded highlights
+ ******************************************************************************/
+
+* {
+    /* Tokyo Night Storm Color Palette */
+    bg:              #24283b;
+    bg-dark:         #1f2335;
+    bg-highlight:    #2d3348;
+    fg:              #c0caf5;
+    cyan:            #7dcfff;
+    blue:            #7aa2f7;
+    magenta:         #bb9af7;
+    green:           #9ece6a;
+    yellow:          #e0af68;
+    red:             #f7768e;
+    comment:         #565f89;
+    grey:            #414868;
+    
+    /* Global Settings */
+    background-color: transparent;
+    text-color:       @fg;
+    font:             "JetBrainsMono Nerd Font 13";
+}
+
+/*******************************************************************************
+ * MAIN WINDOW
+ ******************************************************************************/
+window {
+    transparency:         "real";
+    background-color:     @bg;
+    border:               3px;
+    border-color:         @cyan;
+    border-radius:        16px;
+    width:                900px;
+    height:               650px;
+    location:             center;
+    anchor:               center;
+    x-offset:             0;
+    y-offset:             0;
+}
+
+/*******************************************************************************
+ * MAIN BOX - CONTAINER FOR ALL ELEMENTS
+ ******************************************************************************/
+mainbox {
+    background-color:     transparent;
+    padding:              24px;
+    spacing:              20px;
+    children:             [ inputbar, message, listview, mode-switcher ];
+}
+
+/*******************************************************************************
+ * INPUT BAR - SEARCH BOX
+ ******************************************************************************/
+inputbar {
+    background-color:     @bg-dark;
+    text-color:           @fg;
+    border:               2px;
+    border-color:         @grey;
+    border-radius:        12px;
+    padding:              16px 20px;
+    spacing:              12px;
+    children:             [ prompt, entry ];
+}
+
+prompt {
+    background-color:     transparent;
+    text-color:           @cyan;
+    font:                 "JetBrainsMono Nerd Font 15";
+}
+
+entry {
+    background-color:     transparent;
+    text-color:           @fg;
+    placeholder:          "Search applications...";
+    placeholder-color:    @comment;
+    cursor:               text;
+}
+
+/*******************************************************************************
+ * MESSAGE - INFORMATION/ERROR DISPLAY
+ ******************************************************************************/
+message {
+    background-color:     transparent;
+    border:               0;
+    padding:              0;
+}
+
+textbox {
+    background-color:     @bg-highlight;
+    text-color:           @cyan;
+    border:               2px;
+    border-color:         @grey;
+    border-radius:        10px;
+    padding:              12px 16px;
+    vertical-align:       0.5;
+    horizontal-align:     0.5;
+}
+
+/*******************************************************************************
+ * LIST VIEW - APPLICATION GRID
+ ******************************************************************************/
+listview {
+    background-color:     transparent;
+    padding:              8px;
+    spacing:              16px;
+    columns:              5;
+    lines:                4;
+    cycle:                true;
+    dynamic:              true;
+    scrollbar:            false;
+    layout:               vertical;
+    fixed-height:         true;
+    fixed-columns:        true;
+}
+
+/*******************************************************************************
+ * ELEMENTS - INDIVIDUAL APP ITEMS
+ ******************************************************************************/
+element {
+    background-color:     transparent;
+    text-color:           @fg;
+    orientation:          vertical;
+    border-radius:        12px;
+    padding:              16px;
+    spacing:              8px;
+}
+
+element normal.normal {
+    background-color:     @bg-dark;
+    text-color:           @fg;
+}
+
+element normal.active {
+    background-color:     @bg-highlight;
+    text-color:           @cyan;
+}
+
+element normal.urgent {
+    background-color:     @red;
+    text-color:           @bg;
+}
+
+element selected.normal {
+    background-color:     @cyan;
+    text-color:           @bg;
+    border:               2px;
+    border-color:         @blue;
+}
+
+element selected.active {
+    background-color:     @blue;
+    text-color:           @bg;
+}
+
+element selected.urgent {
+    background-color:     @red;
+    text-color:           @bg;
+    border-color:         @yellow;
+}
+
+element alternate.normal {
+    background-color:     @bg-dark;
+    text-color:           @fg;
+}
+
+element alternate.active {
+    background-color:     @bg-highlight;
+    text-color:           @cyan;
+}
+
+element alternate.urgent {
+    background-color:     @red;
+    text-color:           @bg;
+}
+
+/*******************************************************************************
+ * ELEMENT COMPONENTS
+ ******************************************************************************/
+element-icon {
+    background-color:     transparent;
+    size:                 64px;
+    horizontal-align:     0.5;
+}
+
+element-text {
+    background-color:     transparent;
+    text-color:           inherit;
+    horizontal-align:     0.5;
+    vertical-align:       0.5;
+    font:                 "JetBrainsMono Nerd Font 11";
+}
+
+/*******************************************************************************
+ * MODE SWITCHER - BOTTOM TABS (drun/run/window/files)
+ ******************************************************************************/
+mode-switcher {
+    background-color:     transparent;
+    spacing:              12px;
+}
+
+button {
+    background-color:     @bg-dark;
+    text-color:           @fg;
+    border:               2px;
+    border-color:         @grey;
+    border-radius:        10px;
+    padding:              12px 20px;
+    horizontal-align:     0.5;
+}
+
+button selected {
+    background-color:     @cyan;
+    text-color:           @bg;
+    border-color:         @blue;
+}
+
+/*******************************************************************************
+ * SCROLLBAR
+ ******************************************************************************/
+scrollbar {
+    background-color:     @bg-dark;
+    handle-color:         @cyan;
+    border-radius:        8px;
+    width:                6px;
+    padding:              0;
+    margin:               0 0 0 8px;
+}
+
+/*******************************************************************************
+ * ERROR MESSAGE
+ ******************************************************************************/
+error-message {
+    background-color:     @bg;
+    border:               3px;
+    border-color:         @red;
+    border-radius:        12px;
+    padding:              24px;
+}
+
+element-text error-message {
+    text-color:           @red;
+}

@@ -13,6 +13,8 @@ This repository contains configuration files for a complete Linux development se
 - **Editor**: Neovim with LazyVim
 - **Prompt**: Starship (Gruvbox Dark theme)
 - **Keyboard Layout**: Kanata with Tarmak progression to Colemak-DH
+- **Launcher**: Rofi with Tokyo Night Storm theme (grid view, icons)
+- **Power Menu**: Rofi-based power menu with Tokyo Night Storm theme
 
 ## Theme
 
@@ -20,6 +22,7 @@ This repository contains configuration files for a complete Linux development se
 
 - Ghostty terminal
 - Qtile window manager
+- Rofi launcher and menus
 - Zellij multiplexer
 - Zsh syntax highlighting
 
@@ -80,6 +83,14 @@ Ensure the following are installed:
    # Kanata
    mkdir -p ~/.config/kanata
    ln -sf ~/dotfiles/kanata/kanata.kbd ~/.config/kanata/kanata.kbd
+
+   # Rofi
+   mkdir -p ~/.config/rofi
+   ln -sf ~/dotfiles/rofi ~/.config/rofi
+
+   # Scripts
+   mkdir -p ~/bin
+   ln -sf ~/dotfiles/scripts/powermenu.sh ~/bin/powermenu.sh
    ```
 
 3. Install Oh My Zsh plugins:
@@ -145,6 +156,7 @@ Key bindings:
 - `Mod+b`: Launch browser (Chrome)
 - `Mod+r`: Launch Rofi
 - `Mod+e`: Launch file manager (Thunar)
+- `Mod+Shift+e`: Power menu
 - `Mod+q`: Kill window
 - `Mod+1-9`: Switch workspace
 
@@ -199,6 +211,42 @@ Features:
 - Time display
 - Vim mode indicators
 
+### Rofi
+
+**Location**: `rofi/`
+
+Modern application launcher and menu system with Tokyo Night Storm theme.
+
+Features:
+
+- **Grid Layout**: 5x4 grid displaying 20 apps at once
+- **Application Icons**: Large 64px icons with app names
+- **Search Bar**: Fast fuzzy search with placeholder text
+- **Multiple Modes**:
+  - `drun`: Application launcher (default)
+  - `run`: Command runner
+  - `window`: Window switcher
+  - `filebrowser`: File browser
+- **Styling**:
+  - Rounded corners (16px border radius)
+  - Transparency with blur support
+  - Color-coded selection (cyan highlight)
+  - Smooth hover states
+- **Alphabetical Sorting**: Apps sorted alphabetically for easy finding
+- **Icon Theme**: Papirus-Dark icon set
+
+Usage:
+
+- `Mod+r`: Open application launcher
+- Type to search, arrow keys to navigate, Enter to launch
+- Esc to cancel
+
+Configuration:
+
+- Main config: `rofi/config.rasi`
+- Theme: `rofi/tokyo-night-storm.rasi`
+- Customize: grid size (columns/lines), icon size, colors, fonts
+
 ### Kanata
 
 **Location**: `kanata/kanata.kbd`
@@ -218,6 +266,34 @@ Layer switching:
 - Caps+4: Tarmak4
 - Caps+5: Colemak-DH
 - Caps+0: QWERTY
+
+### Power Menu
+
+**Location**: `scripts/powermenu.sh`
+
+Features:
+
+- Tokyo Night Storm themed rofi interface
+- Options: Lock, Logout, Reboot, Shutdown, Suspend
+- Confirmation prompts for destructive actions (reboot/shutdown)
+- JetBrainsMono Nerd Font icons
+- Integration with systemctl for power management
+
+Usage:
+
+- `Mod+Shift+e`: Open power menu
+- Or run directly: `~/dotfiles/scripts/powermenu.sh`
+
+The power menu requires a lock screen utility (i3lock or betterlockscreen) for the lock option. Install one with:
+
+```bash
+# i3lock
+sudo apt install i3lock  # Debian/Ubuntu
+sudo pacman -S i3lock    # Arch
+
+# Or betterlockscreen (recommended)
+yay -S betterlockscreen
+```
 
 ### GNOME Extensions (if applicable)
 

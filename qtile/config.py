@@ -1,4 +1,5 @@
 from typing import List
+from os.path import expanduser
 
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -12,6 +13,7 @@ terminal = "ghostty"
 browser = "google-chrome"
 launcher = "rofi -show drun"
 file_manager = "thunar"
+powermenu = expanduser("~/dotfiles/scripts/powermenu.sh")
 
 # --------------------------------------------------------------
 # Tokyonight Storm Palette
@@ -65,6 +67,7 @@ keys = [
     Key([mod], "b", lazy.spawn(browser), desc="Open browser"),
     Key([mod], "r", lazy.spawn(launcher), desc="Launcher"),
     Key([mod], "e", lazy.spawn(file_manager), desc="File manager"),
+    Key([mod, "shift"], "e", lazy.spawn(powermenu), desc="Power menu"),
     # Qtile
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -152,8 +155,8 @@ floating_layout = layout.Floating(
 # --------------------------------------------------------------
 widget_defaults = dict(
     font="JetBrainsMono Nerd Font",
-    fontsize=19,
-    padding=6,
+    fontsize=17,
+    padding=8,
     foreground=colors["fg"],
 )
 extension_defaults = widget_defaults.copy()
@@ -162,100 +165,165 @@ extension_defaults = widget_defaults.copy()
 def top_bar():
     return bar.Bar(
         [
+            # Left Section: Workspaces & Layout
+            widget.Spacer(length=10),
             widget.GroupBox(
                 highlight_method="block",
+                highlight_color=[colors["bg_dark"], colors["bg_dark"]],
                 active=colors["fg"],
                 inactive=inactive,
                 this_current_screen_border=accent,
-                this_screen_border=colors["grey"],
+                this_screen_border=colors["bg"],
                 other_current_screen_border=colors["grey"],
                 other_screen_border=colors["grey"],
                 urgent_border=colors["red"],
-                padding=6,
-                rounded=False,
+                padding=10,
+                rounded=True,
                 hide_unused=True,
-                borderwidth=2,
+                borderwidth=0,
                 disable_drag=True,
+                fontsize=18,
+                block_highlight_text_color=colors["bg"],
+            ),
+            widget.Sep(
+                linewidth=0,
+                padding=16,
+            ),
+            widget.CurrentLayout(
+                mode="icon",
+                padding=10,
+                foreground=accent,
                 fontsize=19,
             ),
-            widget.CurrentLayout(mode="icon", padding=6, foreground=accent),
-            widget.TextBox(text="|", foreground=colors["grey"], padding=6),
+            widget.Sep(
+                linewidth=0,
+                padding=12,
+            ),
             widget.WindowName(
                 format="{name}",
-                max_chars=60,
-                empty_group_string="",
+                max_chars=55,
+                empty_group_string="Desktop",
                 foreground=colors["cyan"],
+                padding=12,
+                fontsize=16,
+            ),
+            widget.Spacer(),
+            # Center Section: Clock (Prominent)
+            widget.TextBox(
+                text="",
+                foreground=colors["bg"],
+                fontsize=32,
                 padding=0,
-                fontsize=19,
             ),
-            widget.Spacer(),
             widget.Clock(
-                format="%Y-%m-%d  %H:%M",
-                foreground=colors["magenta"],
-                padding=8,
-                fontsize=19,
+                format="  %a %b %d   %H:%M",
+                foreground=colors["fg"],
+                background=colors["bg"],
+                padding=16,
+                fontsize=16,
+            ),
+            widget.TextBox(
+                text="",
+                foreground=colors["bg"],
+                fontsize=32,
+                padding=0,
             ),
             widget.Spacer(),
+            # Right Section: System Controls
             widget.Backlight(
                 backlight_name="nvidia_wmi_ec_backlight",
                 fmt="󰃞 {}",
                 foreground=colors["yellow"],
-                padding=6,
-                fontsize=19,
+                padding=10,
+                fontsize=17,
             ),
-            widget.TextBox(text="|", foreground=colors["grey"], padding=6),
+            widget.Sep(
+                linewidth=1,
+                padding=12,
+                foreground=colors["grey"],
+            ),
             widget.PulseVolume(
                 channel="Master",
                 fmt="󰕾 {}",
-                foreground=colors["fg"],
-                padding=6,
-                fontsize=19,
+                foreground=colors["blue"],
+                padding=10,
+                fontsize=17,
             ),
-            widget.TextBox(text="|", foreground=colors["grey"], padding=6),
+            widget.Sep(
+                linewidth=1,
+                padding=12,
+                foreground=colors["grey"],
+            ),
             widget.Battery(
                 format="󰁹 {percent:2.0%}",
-                foreground=colors["fg"],
-                padding=6,
+                foreground=colors["green"],
+                padding=10,
                 low_percentage=0.2,
-                fontsize=19,
+                fontsize=17,
             ),
-            widget.TextBox(text="|", foreground=colors["grey"], padding=6),
-            # Status widgets (right)
+            widget.Sep(
+                linewidth=0,
+                padding=16,
+            ),
+            # System Stats Group
             widget.CPU(
-                format="CPU {load_percent:.0f}%",
+                format=" {load_percent:.0f}%",
                 foreground=colors["yellow"],
-                padding=6,
+                padding=10,
                 update_interval=2,
-                fontsize=19,
+                fontsize=16,
+            ),
+            widget.Sep(
+                linewidth=1,
+                padding=8,
+                foreground=colors["grey"],
             ),
             widget.Memory(
-                format="RAM {MemPercent:2.0f}%",
+                format=" {MemPercent:.0f}%",
                 foreground=colors["magenta"],
-                padding=6,
+                padding=10,
                 update_interval=5,
-                fontsize=19,
+                fontsize=16,
+            ),
+            widget.Sep(
+                linewidth=1,
+                padding=8,
+                foreground=colors["grey"],
             ),
             widget.Net(
-                format="Net ↓{down:.1f}KB ↑{up:.1f}KB",
-                foreground=colors["green"],
-                padding=6,
+                format="↓{down:.0f}KB ↑{up:.0f}KB",
+                foreground=colors["cyan"],
+                padding=10,
                 update_interval=3,
-                fontsize=19,
+                fontsize=16,
             ),
-            widget.TextBox(text="|", foreground=colors["grey"], padding=6),
-            widget.Systray(icon_size=20, padding=6),
+            widget.Sep(
+                linewidth=0,
+                padding=16,
+            ),
+            # Systray & Power
+            widget.Systray(
+                icon_size=20,
+                padding=6,
+            ),
+            widget.Sep(
+                linewidth=0,
+                padding=12,
+            ),
             widget.TextBox(
-                text="",
-                foreground=colors["red"],
-                padding=8,
-                fontsize=19,
-                mouse_callbacks={"Button1": lazy.spawn(launcher)},
+                text=" ⏻ ",
+                foreground=colors["fg"],
+                background=colors["red"],
+                padding=10,
+                fontsize=18,
+                mouse_callbacks={"Button1": lazy.spawn(powermenu)},
             ),
+            widget.Spacer(length=10),
         ],
-        size=30,
-        margin=[4, 8, 2, 8],
+        size=38,
+        margin=[8, 16, 4, 16],
         background=colors["bg_dark"],
-        opacity=1.0,
+        opacity=0.95,
     )
 
 

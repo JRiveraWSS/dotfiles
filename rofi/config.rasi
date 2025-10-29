@@ -1,0 +1,34 @@
+/*******************************************************************************
+ * ROFI CONFIG - TOKYO NIGHT STORM
+ * Modern grid-based application launcher with icons
+ ******************************************************************************/
+
+configuration {
+    /* Display Settings */
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    drun-display-format: "{name}";
+    display-drun: "  Apps";
+    display-run: "  Run";
+    display-window: " 﩯 Windows";
+    display-filebrowser: "  Files";
+    
+    /* Behavior */
+    modi: "drun,run,window,filebrowser";
+    sort: true;
+    sorting-method: "normal";
+    case-sensitive: false;
+    cycle: true;
+    
+    /* Performance */
+    lazy-grab: false;
+    drun-match-fields: "name,generic,exec,categories,keywords";
+    
+    /* Terminal for running commands */
+    terminal: "ghostty";
+    
+    /* Window positioning */
+    location: 0;
+}
+
+@theme "tokyo-night-storm"
