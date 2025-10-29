@@ -284,17 +284,18 @@ mouse = [
 @hook.subscribe.startup_once
 def autostart():
     from subprocess import Popen
+    from os.path import expanduser
 
     cmds = [
         "nm-applet",
-        "picom --config ~/.config/picom/picom.conf",
+        f"picom --config {expanduser('~')}/.config/picom/picom.conf",
         "blueman-applet",
         "flameshot",
-        "~/.fehbg",
+        f"{expanduser('~')}/.fehbg",
     ]
     for c in cmds:
         try:
-            Popen(c.split())
+            Popen(c, shell=True)
         except Exception:
             pass
 
