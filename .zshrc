@@ -88,3 +88,19 @@ eval "$(starship init zsh)"
 
 # opencode
 export PATH=/home/jrivera/.opencode/bin:$PATH
+
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/jrivera/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/jrivera/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/jrivera/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/jrivera/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+
