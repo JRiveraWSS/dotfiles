@@ -104,3 +104,6 @@ export PATH=/home/jrivera/.opencode/bin:$PATH
 # unset __conda_setup
 # # <<< conda initialize <<<
 
+
+# Added by LM Studio CLI tool (lms)
+export PATH="$PATH:/home/jrivera/.lmstudio/bin"
