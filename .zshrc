@@ -107,3 +107,12 @@ export PATH=/home/jrivera/.opencode/bin:$PATH
 
 # Added by LM Studio CLI tool (lms)
 export PATH="$PATH:/home/jrivera/.lmstudio/bin"
+
+# bun completions
+[ -s "/home/jrivera/.bun/_bun" ] && source "/home/jrivera/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+alias claude-mem='/home/jrivera/.bun/bin/bun "/home/jrivera/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
