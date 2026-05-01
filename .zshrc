@@ -12,54 +12,54 @@ export NVM_DIR="$HOME/.nvm"
 # Vim mode
 bindkey -v
 
-# Tokyo Night Storm: Faint blue for suggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#545c7e'
+# Solarized Dark: Dim gray for suggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#586e75'
 
-# Tokyo Night Storm syntax-highlighting
+# Solarized Dark syntax-highlighting
 
 # Make sure truecolor is on
 export ZSH_HIGHLIGHT_STYLES_PATH=true
 
 # Command words (builtin/alias/external)
-ZSH_HIGHLIGHT_STYLES[command]='fg=#7aa2f7'             # Blue
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=#7aa2f7'
-ZSH_HIGHLIGHT_STYLES[function]='fg=#bb9af7'            # Magenta
-ZSH_HIGHLIGHT_STYLES[alias]='fg=#e0af68'               # Yellow
+ZSH_HIGHLIGHT_STYLES[command]='fg=#268bd2'             # Blue
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=#268bd2'
+ZSH_HIGHLIGHT_STYLES[function]='fg=#d33682'            # Magenta
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#b58900'               # Yellow
 
 # Arguments
-ZSH_HIGHLIGHT_STYLES[argument]='fg=#a9b1d6'            # Main foreground
+ZSH_HIGHLIGHT_STYLES[argument]='fg=#839496'            # Main foreground
 
 # Options (e.g., -a)
-ZSH_HIGHLIGHT_STYLES[option]='fg=#7dcfff'              # Cyan
+ZSH_HIGHLIGHT_STYLES[option]='fg=#2aa198'              # Cyan
 
 # Path (files/folders)
-ZSH_HIGHLIGHT_STYLES[path]='fg=#73daca'                # Green
+ZSH_HIGHLIGHT_STYLES[path]='fg=#2aa198'                # Cyan
 
 # Globs (* ? etc.)
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=#bb9af7'            # Magenta
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=#d33682'            # Magenta
 
 # Strings
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#9ece6a'   # Green
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#9ece6a'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#859900'   # Green
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#859900'
 
 # Command substitution (`...` or $(...))
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=#f7768e'     # Red
-ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#e0af68'   # Yellow
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=#dc322f'     # Red
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#b58900'   # Yellow
 
 # Variables ($FOO)
-ZSH_HIGHLIGHT_STYLES[dollar-parameter]='fg=#bb9af7'         # Magenta
+ZSH_HIGHLIGHT_STYLES[dollar-parameter]='fg=#d33682'         # Magenta
 
 # Comments
-ZSH_HIGHLIGHT_STYLES[comment]='fg=#545c7e'                  # Dim gray-blue
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#586e75'                  # Dim gray
 
 # Redirections
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=#e0af68'              # Yellow
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=#b58900'              # Yellow
 
 # Errors
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f7768e,bold'       # Bright red
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#dc322f,bold'       # Bright red
 
 # Default foreground
-ZSH_HIGHLIGHT_STYLES[default]='fg=#a9b1d6'
+ZSH_HIGHLIGHT_STYLES[default]='fg=#839496'
 
 # >>> nvim-linux-x86_64 PATH >>>
 if [ -d "\/home/jrivera/nvim-linux-x86_64/bin" ]; then

@@ -268,7 +268,7 @@ web_client {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "tokyo-night-storm"
+theme "solarized-dark"
  
 // themes {
 //   batman {
