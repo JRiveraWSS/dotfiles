@@ -10,7 +10,7 @@ Personal Linux development environment dotfiles unified around **Solarized Dark*
 .zshrc              # Zsh config (lives at repo root, symlinked to ~/.zshrc)
 starship.toml       # Starship prompt
 ghostty/            # Ghostty terminal emulator
-nvim/               # Neovim (MiniMax framework, vim.pack plugin manager)
+nvim/               # Neovim (no custom config, built-in defaults)
 opencode/           # OpenCode AI plugin (Bun/Node.js)
 zellij/             # Zellij terminal multiplexer
 ```
@@ -22,25 +22,11 @@ No install script. Setup is manual symlinks:
 ```sh
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config
-ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/zellij/config.kdl ~/.config/zellij/config.kdl
 ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
 ```
 
 ## Commands
-
-### Lua (Neovim)
-
-```sh
-stylua --check nvim/   # format check (dry run)
-stylua nvim/           # auto-format
-```
-
-Config: `nvim/stylua.toml` (2-space indent, 120 column width).
-
-Inside Neovim (vim.pack plugin manager):
-- `:lua vim.pack.update()` — update all plugins; `:write` to confirm
-- `:lua vim.pack.del({ ... })` — delete specific plugins
 
 ### Shell scripts
 
@@ -54,32 +40,7 @@ shellcheck scripts/*.sh
 cd opencode && bun install
 ```
 
-## Neovim Architecture
-
-Uses **MiniMax** — a mini.nvim-based config with `vim.pack` (Neovim's built-in plugin manager). Plugin state is pinned in `nvim-pack-lock.json`.
-
-`plugin/` files are auto-sourced in order:
-- `10_options.lua` — built-in Neovim options
-- `20_keymaps.lua` — custom mappings
-- `30_mini.lua` — mini.nvim configuration
-- `40_plugins.lua` — non-mini plugins (conform, mason, lspconfig, treesitter)
-- `50_vscode.lua` — VSCode extension support
-
-`after/` overrides plugin behavior:
-- `after/lsp/` — language server configs
-- `after/ftplugin/` — filetype-specific settings
-- `after/snippets/` — higher-priority user snippets
-
-Loading helpers defined in `init.lua`: `Config.now()` for startup-critical code, `Config.later()` for deferred loading.
-
 ## Code Style
-
-### Lua (`nvim/`)
-- Formatter: StyLua (`nvim/stylua.toml`)
-- 2-space indent, 120 column width, double quotes
-- `snake_case` for local variables
-- Always include trailing commas in tables
-- `vim.opt.*`, `vim.g.*`, `vim.fn.*`, `vim.api.*` directly
 
 ### Bash / Shell (`.zshrc`)
 - Shebang: `#!/usr/bin/env bash`

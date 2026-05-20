@@ -14,7 +14,7 @@ TOML (Starship, StyLua), Rasi (Rofi), Kanata KBD, Devicetree/YAML (ZMK keyboard 
 starship.toml       # Starship prompt config
 ghostty/            # Ghostty terminal emulator
 kanata/             # Kanata keyboard remapper (Colemak-DH)
-nvim/               # Neovim (LazyVim framework, 59 plugins)
+nvim/               # Neovim (no custom config, built-in defaults)
 opencode/           # OpenCode AI plugin (Bun/Node.js)
 picom/              # Picom compositor
 qtile/              # Qtile tiling window manager
@@ -27,23 +27,6 @@ corne-wireless-config/  # ZMK firmware for Corne keyboard (SEPARATE git repo)
 ## Build / Lint / Test Commands
 
 There is **no traditional build system**, Makefile, or test framework in this repository.
-
-### Lua (Neovim config)
-
-Format check (dry run):
-```sh
-stylua --check nvim/
-```
-Auto-format:
-```sh
-stylua nvim/
-```
-Configuration: `nvim/stylua.toml` (2-space indent, 120 column width).
-
-Neovim plugin management (run inside Neovim):
-- `:Lazy sync` -- install/update all plugins
-- `:Lazy health` -- check plugin health
-- Plugin versions are pinned in `nvim/lazy-lock.json`.
 
 ### Shell scripts
 
@@ -74,38 +57,11 @@ Setup is entirely manual symlinks, documented in `README.md`. The pattern is:
 ```sh
 ln -sf ~/dotfiles/<tool-dir> ~/.config/<tool>
 # Example:
-ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ```
 There is no install script or bootstrap automation.
 
 ## Code Style Guidelines
-
-### Lua (Neovim -- `nvim/lua/`)
-
-- **Formatter:** StyLua (`nvim/stylua.toml`)
-- **Indentation:** 2 spaces
-- **Column width:** 120
-- **Strings:** Double quotes (`"string"`)
-- **Naming:** `snake_case` for local variables (`local lazypath`, `local has_words_before`)
-- **Trailing commas:** Always include in tables
-- **Comments:** `--` single-line; `---@param` for LuaDoc annotations
-- **Plugin file pattern:** One file per plugin in `nvim/lua/plugins/`. Each file returns
-  a table or list of tables:
-  ```lua
-  -- Simple plugin (declarative):
-  return { "author/plugin-name", opts = { ... } }
-
-  -- Complex plugin (config function):
-  return {
-    "author/plugin-name",
-    config = function()
-      require("plugin").setup({ ... })
-    end,
-  }
-  ```
-- **Vim API:** Use `vim.opt.*`, `vim.g.*`, `vim.fn.*`, `vim.api.*` directly
-- **Framework:** LazyVim -- follow its conventions for `lua/config/` and `lua/plugins/`
 
 ### Python (Qtile -- `qtile/config.py`)
 
