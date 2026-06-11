@@ -12,7 +12,7 @@ starship.toml       # Starship prompt
 ghostty/            # Ghostty terminal emulator
 nvim/               # Neovim (no custom config, built-in defaults)
 opencode/           # OpenCode AI plugin (Bun/Node.js)
-zellij/             # Zellij terminal multiplexer
+Xresources          # X11 Xft DPI settings for HiDPI display
 ```
 
 ## Installation
@@ -22,9 +22,19 @@ No install script. Setup is manual symlinks:
 ```sh
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config
-ln -sf ~/dotfiles/zellij/config.kdl ~/.config/zellij/config.kdl
 ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
+ln -sf ~/dotfiles/Xresources ~/.Xresources
 ```
+
+**HiDPI (2560×1600 laptop):** Fractional 150% scaling is pre-configured in `~/.config/monitors.xml`. Run once after first login:
+
+```sh
+gsettings set org.gnome.desktop.interface scaling-factor 1
+gsettings set org.gnome.mutter experimental-features "['x11-randr-fractional-scaling']"
+xrdb -merge ~/.Xresources
+```
+
+Then log out and back in for full effect.
 
 ## Commands
 
@@ -50,7 +60,6 @@ cd opencode && bun install
 
 ### Config file formats
 - **Ghostty**: `key = value` pairs
-- **Zellij**: KDL format with `//` line comments
 - **Starship**: TOML
 
 ## Commit Conventions
@@ -60,11 +69,10 @@ Conventional Commits format:
 type(scope): imperative description
 ```
 - **Types:** `feat`, `fix`, `chore`
-- **Scopes:** tool/directory name (e.g., `nvim`, `ghostty`, `zellij`, `dotfiles`)
+- **Scopes:** tool/directory name (e.g., `nvim`, `ghostty`, `dotfiles`)
 
 ## Project Notes
 
 - **Theme consistency:** Solarized Dark hex values are hardcoded per config file (no shared source). When changing colors, update all files. Key colors: bg `#073642`, fg `#fdf6e3`, blue `#268bd2`, cyan `#2aa198`, magenta `#d33682`, green `#859900`, yellow `#b58900`, red `#dc322f`, orange `#cb4b16`, base01 (comments/dim) `#586e75`, base0 (foreground) `#839496`. Neovim uses a custom colorscheme at `nvim/colors/solarizeddark.lua` (applied via `vim.cmd('colorscheme solarizeddark')` in `plugin/30_mini.lua`).
 - **Font:** Terminess Nerd Font Mono set in Ghostty; other tools inherit from the terminal.
-- **Zellij auto-start:** Zellij starts automatically on interactive shells. Disable with `export NO_ZELLIJ=1`.
 - **PATH:** `.zshrc` adds `~/.cargo/bin`, `~/.lmstudio/bin`, `~/.dotnet/tools`, `~/.opencode/bin`. NVM manages Node.js.

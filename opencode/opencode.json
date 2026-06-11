@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "@plannotator/opencode"
-  ]
+  "plugin": ["@plannotator/opencode"],
+  "autoupdate": true,
+  "model": "opencode/big-pickle"
 }

@@ -69,20 +69,7 @@ fi
 
 export EDITOR=nvim
 export VISUAL=nvim
-
-# Auto-start Zellij on interactive shells
-if [[ $- == *i* ]]; then
-  if command -v zellij >/dev/null 2>&1; then
-    # Skip if already in a multiplexer or certain terminals
-    if [[ -z "$ZELLIJ" && -z "$TMUX" && "$TERM" != "linux" && "$TERM_PROGRAM" != "vscode" ]]; then
-      # Opt-out switch: export NO_ZELLIJ=1 to disable
-      if [[ -z "$NO_ZELLIJ" ]]; then
-        zellij
-        exit    # exit the shell when Zellij exits (cleaner)
-      fi
-    fi
-  fi
-fi
+export XCURSOR_SIZE=36
 
 eval "$(starship init zsh)"
 

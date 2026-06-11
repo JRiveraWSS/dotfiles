@@ -9,7 +9,6 @@ This repository contains configuration files for a complete Linux development se
 - **Window Manager**: Qtile (Python-based tiling WM)
 - **Terminal**: Ghostty with Tokyo Night Storm theme
 - **Shell**: Zsh with Oh My Zsh, syntax highlighting, and autosuggestions
-- **Terminal Multiplexer**: Zellij with custom keybindings
 - **Editor**: Neovim with LazyVim
 - **Prompt**: Starship (Gruvbox Dark theme)
 - **Keyboard Layout**: Kanata with Tarmak progression to Colemak-DH
@@ -25,7 +24,6 @@ This repository contains configuration files for a complete Linux development se
 - Qtile window manager
 - Rofi launcher and menus
 - i3lock-color lock screen
-- Zellij multiplexer
 - Zsh syntax highlighting
 
 **Gruvbox Dark** is used for:
@@ -43,7 +41,6 @@ Ensure the following are installed:
 - Neovim (LazyVim)
 - Ghostty terminal
 - Qtile
-- Zellij
 - Starship
 - Kanata
 - Node Version Manager (nvm)
@@ -70,10 +67,6 @@ Ensure the following are installed:
    # Qtile
    mkdir -p ~/.config/qtile
    ln -sf ~/dotfiles/qtile/config.py ~/.config/qtile/config.py
-
-   # Zellij
-   mkdir -p ~/.config/zellij
-   ln -sf ~/dotfiles/zellij/config.kdl ~/.config/zellij/config.kdl
 
    # Neovim
    mkdir -p ~/.config/nvim
@@ -130,7 +123,6 @@ Features:
 - Plugins: git, zsh-syntax-highlighting, zsh-autosuggestions
 - Vim mode enabled
 - Tokyo Night Storm colors for syntax highlighting
-- Auto-starts Zellij on interactive shells
 - NVM integration
 - Neovim as default editor
 - Custom PATH configuration
@@ -163,28 +155,6 @@ Key bindings:
 - `Mod+Shift+e`: Power menu
 - `Mod+q`: Kill window
 - `Mod+1-9`: Switch workspace
-
-### Zellij
-
-**Location**: `zellij/config.kdl`
-
-Features:
-
-- Tokyo Night Storm theme
-- Custom modal keybindings
-- Default mode: locked (requires Ctrl+g to activate)
-- Vim-style navigation
-- Startup tips disabled
-
-Modes:
-
-- `Ctrl+g`: Toggle locked mode
-- `p`: Pane mode
-- `t`: Tab mode
-- `r`: Resize mode
-- `m`: Move mode
-- `s`: Scroll mode
-- `o`: Session mode
 
 ### Neovim
 
@@ -355,7 +325,6 @@ The extensions file contains settings for various GNOME Shell extensions includi
 All tools use **Vim-style hjkl navigation** where possible:
 
 - Qtile: hjkl for window navigation
-- Zellij: hjkl for pane navigation
 - Zsh: Vi mode enabled
 - Neovim: Native Vim keybindings
 
@@ -367,24 +336,14 @@ To change from Tokyo Night Storm to another theme:
 
 1. Update Ghostty config with desired theme name
 2. Modify Qtile color palette in `config.py`
-3. Change Zellij theme in `config.kdl`
-4. Update Zsh syntax highlighting colors in `.zshrc`
+3. Update Zsh syntax highlighting colors in `.zshrc`
 
 ### Modify Keybindings
 
 - **Qtile**: Edit `keys` list in `qtile/config.py`
-- **Zellij**: Modify keybind sections in `zellij/config.kdl`
 - **Kanata**: Edit layer definitions in `kanata/kanata.kbd`
 
 ## Troubleshooting
-
-### Zellij doesn't auto-start
-
-Set `NO_ZELLIJ=1` environment variable to disable auto-start:
-
-```bash
-export NO_ZELLIJ=1
-```
 
 ### Fonts not rendering correctly
 

@@ -5,7 +5,7 @@
 Personal Linux dotfiles repository for a complete desktop development environment.
 Configs are unified around **Tokyo Night Storm** theming and **Vim-style (hjkl)** keybindings.
 
-**Languages:** Lua (Neovim), Python (Qtile), Bash (scripts), Zsh (shell), KDL (Zellij),
+**Languages:** Lua (Neovim), Python (Qtile), Bash (scripts), Zsh (shell),
 TOML (Starship, StyLua), Rasi (Rofi), Kanata KBD, Devicetree/YAML (ZMK keyboard firmware).
 
 **Directory layout** -- one directory per tool at the repo root:
@@ -20,7 +20,6 @@ picom/              # Picom compositor
 qtile/              # Qtile tiling window manager
 rofi/               # Rofi launcher + theme
 scripts/            # Shell scripts (lock screen, power menu)
-zellij/             # Zellij terminal multiplexer
 corne-wireless-config/  # ZMK firmware for Corne keyboard (SEPARATE git repo)
 ```
 
@@ -100,7 +99,6 @@ Each tool uses its native config format. Follow existing patterns:
 - **Ghostty:** `key = value` pairs
 - **Picom:** C-like config with `# ------` section dividers (matches Python style)
 - **Rofi:** Rasi (CSS-like) with `/* ... */` decorative block comment headers
-- **Zellij:** KDL format with `//` line comments
 - **Kanata:** S-expression syntax with `;;` comments
 - **Starship:** TOML
 
