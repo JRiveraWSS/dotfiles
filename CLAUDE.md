@@ -10,7 +10,7 @@ Personal Linux development environment dotfiles unified around **Solarized Dark*
 .zshrc              # Zsh config (lives at repo root, symlinked to ~/.zshrc)
 starship.toml       # Starship prompt
 ghostty/            # Ghostty terminal emulator
-nvim/               # Neovim (no custom config, built-in defaults)
+nvim/               # Neovim (LazyVim, symlinked to ~/.config/nvim)
 opencode/           # OpenCode AI plugin (Bun/Node.js)
 Xresources          # X11 Xft DPI settings for HiDPI display
 ```
@@ -87,6 +87,6 @@ Single-context (repo root). See `docs/agents/domain.md`.
 
 ## Project Notes
 
-- **Theme consistency:** Solarized Dark hex values are hardcoded per config file (no shared source). When changing colors, update all files. Key colors: bg `#073642`, fg `#fdf6e3`, blue `#268bd2`, cyan `#2aa198`, magenta `#d33682`, green `#859900`, yellow `#b58900`, red `#dc322f`, orange `#cb4b16`, base01 (comments/dim) `#586e75`, base0 (foreground) `#839496`. Neovim uses a custom colorscheme at `nvim/colors/solarizeddark.lua` (applied via `vim.cmd('colorscheme solarizeddark')` in `plugin/30_mini.lua`).
+- **Theme consistency:** Solarized Dark hex values are hardcoded per config file (no shared source). When changing colors, update all files. Key colors: bg `#073642`, fg `#fdf6e3`, blue `#268bd2`, cyan `#2aa198`, magenta `#d33682`, green `#859900`, yellow `#b58900`, red `#dc322f`, orange `#cb4b16`, base01 (comments/dim) `#586e75`, base0 (foreground) `#839496`. Neovim uses the `maxmx03/solarized.nvim` plugin configured in `nvim/lua/plugins/colorscheme.lua`; terminal background is `#002b36` (base03), matching Ghostty's "Builtin Solarized Dark".
 - **Font:** Terminess Nerd Font Mono set in Ghostty; other tools inherit from the terminal.
 - **PATH:** `.zshrc` adds `~/.cargo/bin`, `~/.lmstudio/bin`, `~/.dotnet/tools`, `~/.opencode/bin`. NVM manages Node.js.
