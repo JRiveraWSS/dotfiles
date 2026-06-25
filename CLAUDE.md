@@ -71,6 +71,20 @@ type(scope): imperative description
 - **Types:** `feat`, `fix`, `chore`
 - **Scopes:** tool/directory name (e.g., `nvim`, `ghostty`, `dotfiles`)
 
+## Agent skills
+
+### Issue tracker
+
+Issues are tracked as entries in a `todo.txt` file at the repo root, managed via the tuxedo CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Todo.txt `@context` tags are used for the five canonical triage roles. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context (repo root). See `docs/agents/domain.md`.
+
 ## Project Notes
 
 - **Theme consistency:** Solarized Dark hex values are hardcoded per config file (no shared source). When changing colors, update all files. Key colors: bg `#073642`, fg `#fdf6e3`, blue `#268bd2`, cyan `#2aa198`, magenta `#d33682`, green `#859900`, yellow `#b58900`, red `#dc322f`, orange `#cb4b16`, base01 (comments/dim) `#586e75`, base0 (foreground) `#839496`. Neovim uses a custom colorscheme at `nvim/colors/solarizeddark.lua` (applied via `vim.cmd('colorscheme solarizeddark')` in `plugin/30_mini.lua`).

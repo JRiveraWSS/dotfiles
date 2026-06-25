@@ -105,3 +105,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 alias claude-mem='/home/jrivera/.bun/bin/bun "/home/jrivera/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
 
 . "$HOME/.local/bin/env"
+
+# Autostart herdr in interactive, non-nested shells
+if [[ $- == *i* ]] && [[ -z "$HERDR_ENV" ]] && command -v herdr &>/dev/null; then
+  herdr
+fi
