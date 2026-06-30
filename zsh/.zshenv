@@ -28,3 +28,14 @@ export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
 # PATH
 # Personal binaries/scripts
 export PATH="$HOME/.local/bin:$PATH"
+
+# Tool directories
+export BUN_INSTALL="$HOME/.bun"
+for _dir in \
+  "$HOME/.cargo/bin" \
+  "$HOME/.opencode/bin" \
+  "$HOME/.lmstudio/bin" \
+  "$BUN_INSTALL/bin"; do
+  [[ -d "$_dir" ]] && export PATH="$_dir:$PATH"
+done
+unset _dir

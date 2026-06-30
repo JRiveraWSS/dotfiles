@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Personal Linux development environment dotfiles unified around **Solarized Dark** theming and **Vim-style (hjkl)** keybindings. One directory per tool at the repo root:
 
 ```
-.zshrc              # Zsh config (lives at repo root, symlinked to ~/.zshrc)
+zsh/                # Zsh config (symlinked to ~/.config/zsh)
 starship.toml       # Starship prompt
 ghostty/            # Ghostty terminal emulator
 nvim/               # Neovim (LazyVim, symlinked to ~/.config/nvim)
@@ -20,10 +20,15 @@ Xresources          # X11 Xft DPI settings for HiDPI display
 No install script. Setup is manual symlinks:
 
 ```sh
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/zsh ~/.config/zsh
 ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config
-ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
 ln -sf ~/dotfiles/Xresources ~/.Xresources
+```
+
+**Ubuntu/Debian only:** `apt install bat` names the binary `batcat` to avoid a package clash. Add a shim so configs can call `bat` directly:
+
+```sh
+ln -s /usr/bin/batcat ~/.local/bin/bat
 ```
 
 **HiDPI (2560×1600 laptop):** Fractional 150% scaling is pre-configured in `~/.config/monitors.xml`. Run once after first login:
@@ -89,4 +94,4 @@ Single-context (repo root). See `docs/agents/domain.md`.
 
 - **Theme consistency:** Solarized Dark hex values are hardcoded per config file (no shared source). When changing colors, update all files. Key colors: bg `#073642`, fg `#fdf6e3`, blue `#268bd2`, cyan `#2aa198`, magenta `#d33682`, green `#859900`, yellow `#b58900`, red `#dc322f`, orange `#cb4b16`, base01 (comments/dim) `#586e75`, base0 (foreground) `#839496`. Neovim uses the `maxmx03/solarized.nvim` plugin configured in `nvim/lua/plugins/colorscheme.lua`; terminal background is `#002b36` (base03), matching Ghostty's "Builtin Solarized Dark".
 - **Font:** Terminess Nerd Font Mono set in Ghostty; other tools inherit from the terminal.
-- **PATH:** `.zshrc` adds `~/.cargo/bin`, `~/.lmstudio/bin`, `~/.dotnet/tools`, `~/.opencode/bin`. NVM manages Node.js.
+- **PATH:** `zsh/.zshenv` adds `~/.cargo/bin`, `~/.opencode/bin`, `~/.lmstudio/bin`, `~/.bun/bin`. NVM manages Node.js.
