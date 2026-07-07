@@ -1,372 +1,82 @@
 # dotfiles
 
-Personal Linux development environment configuration files featuring Tokyo Night Storm theme and Vim-style keybindings across all tools.
+Personal Linux development environment configuration, unified around **Solarized Dark** theming and **Vim-style (hjkl)** keybindings.
 
-## Overview
+## Layout
 
-This repository contains configuration files for a complete Linux development setup with:
+One directory per tool at the repo root:
 
-- **Window Manager**: Qtile (Python-based tiling WM)
-- **Terminal**: Ghostty with Tokyo Night Storm theme
-- **Shell**: Zsh with Oh My Zsh, syntax highlighting, and autosuggestions
-- **Editor**: Neovim with LazyVim
-- **Prompt**: Starship (Gruvbox Dark theme)
-- **Keyboard Layout**: Kanata with Tarmak progression to Colemak-DH
-- **Launcher**: Rofi with Tokyo Night Storm theme (grid view, icons)
-- **Power Menu**: Rofi-based power menu with Tokyo Night Storm theme
-- **Lock Screen**: i3lock-color with live clock and blurred wallpaper
-
-## Theme
-
-**Tokyo Night Storm** is used consistently across:
-
-- Ghostty terminal
-- Qtile window manager
-- Rofi launcher and menus
-- i3lock-color lock screen
-- Zsh syntax highlighting
-
-**Gruvbox Dark** is used for:
-
-- Starship prompt
+```
+zsh/                # Zsh config (symlinked to ~/.config/zsh)
+starship.toml       # Starship prompt
+ghostty/            # Ghostty terminal emulator
+nvim/               # Neovim config (native vim.pack, no plugin-manager framework)
+opencode/           # OpenCode AI plugin (Bun/Node.js)
+Xresources          # X11 Xft DPI settings for HiDPI display
+corne-zmk-config/   # Git submodule: Corne split keyboard firmware (ZMK)
+```
 
 ## Installation
 
-### Prerequisites
+No install script. Setup is manual symlinks:
 
-Ensure the following are installed:
+```sh
+ln -sf ~/dotfiles/zsh ~/.config/zsh
+ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config
+ln -sf ~/dotfiles/nvim ~/.config/nvim
+ln -sf ~/dotfiles/Xresources ~/.Xresources
+```
 
-- Zsh
-- Oh My Zsh
-- Neovim (LazyVim)
-- Ghostty terminal
-- Qtile
-- Starship
-- Kanata
-- Node Version Manager (nvm)
+**Ubuntu/Debian only:** `apt install bat` names the binary `batcat`. Add a shim so configs can call `bat` directly:
 
-### Setup
+```sh
+ln -s /usr/bin/batcat ~/.local/bin/bat
+```
 
-1. Clone this repository:
+**HiDPI (2560×1600 laptop):** fractional 150% scaling is pre-configured in `~/.config/monitors.xml`. Run once after first login:
 
-   ```bash
-   git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
-   cd ~/dotfiles
-   ```
+```sh
+gsettings set org.gnome.desktop.interface scaling-factor 1
+gsettings set org.gnome.mutter experimental-features "['x11-randr-fractional-scaling']"
+xrdb -merge ~/.Xresources
+```
 
-2. Create symlinks for configuration files:
-
-   ```bash
-   # Zsh
-   ln -sf ~/dotfiles/.zshrc ~/.zshrc
-
-   # Ghostty
-   mkdir -p ~/.config/ghostty
-   ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config
-
-   # Qtile
-   mkdir -p ~/.config/qtile
-   ln -sf ~/dotfiles/qtile/config.py ~/.config/qtile/config.py
-
-   # Neovim
-   mkdir -p ~/.config/nvim
-   ln -sf ~/dotfiles/nvim ~/.config/nvim
-
-   # Starship
-   ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
-
-   # Kanata
-   mkdir -p ~/.config/kanata
-   ln -sf ~/dotfiles/kanata/kanata.kbd ~/.config/kanata/kanata.kbd
-
-   # Rofi
-   mkdir -p ~/.config/rofi
-   ln -sf ~/dotfiles/rofi ~/.config/rofi
-
-   # Scripts
-   mkdir -p ~/bin
-   ln -sf ~/dotfiles/scripts/powermenu.sh ~/bin/powermenu.sh
-   ```
-
-3. Install Oh My Zsh plugins:
-
-   ```bash
-   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-   ```
-
-4. Source the new configuration:
-
-   ```bash
-   source ~/.zshrc
-   ```
+Then log out and back in for full effect.
 
 ## Components
 
-### Ghostty Terminal
-
-**Location**: `ghostty/config`
-
-- Theme: Tokyo Night Storm
-- Font: JetBrainsMono Nerd Font Mono (19pt)
-- Cursor: Blinking block
-- Background blur enabled
-- Minimal window decoration
-
 ### Zsh
 
-**Location**: `.zshrc`
-
-Features:
-
-- Oh My Zsh framework
-- Plugins: git, zsh-syntax-highlighting, zsh-autosuggestions
-- Vim mode enabled
-- Tokyo Night Storm colors for syntax highlighting
-- NVM integration
-- Neovim as default editor
-- Custom PATH configuration
-
-### Qtile
-
-**Location**: `qtile/config.py`
-
-Features:
-
-- Tokyo Night Storm color scheme
-- JetBrainsMono Nerd Font throughout
-- Tiling layouts: MonadTall, MonadWide, Max, Floating
-- Vim-style navigation (hjkl)
-- 9 workspaces with emoji icons
-- Status bar with system monitoring (CPU, RAM, Network)
-- Auto-start applications: nm-applet, picom, blueman-applet, flameshot
-
-Key bindings:
-
-- `Mod+h/j/k/l`: Focus window
-- `Mod+Shift+h/j/k/l`: Move window
-- `Mod+Control+h/j/k/l`: Resize window
-- `Mod+Return`: Launch terminal (Ghostty)
-- `Mod+b`: Launch browser (Chrome)
-- `Mod+r`: Launch Rofi
-- `Mod+e`: Launch file manager (Thunar)
-- `Mod+s`: Launch Slack
-- `Mod+l`: Lock screen (blurred wallpaper)
-- `Mod+Shift+e`: Power menu
-- `Mod+q`: Kill window
-- `Mod+1-9`: Switch workspace
-
-### Neovim
-
-**Location**: `nvim/`
-
-Configuration based on LazyVim:
-
-- Word wrap enabled
-- System clipboard integration
-- Dark background with truecolor support
-- Animations disabled
-- Custom plugins in `lua/plugins/`
+`zsh/` — plugins: `fast-syntax-highlighting`, `zsh-autosuggestions`, `zsh-history-substring-search`, `zsh-vi-mode`. Vim-mode keybindings, `zoxide`/`fzf`/`fd` for navigation, `eza`/`bat`/`ripgrep` as core-utility replacements. Plugin management is a small self-contained loader in `zsh/plugins.zsh` (clones from GitHub on first use).
 
 ### Starship
 
-**Location**: `starship.toml`
+`starship.toml` — Solarized Dark prompt.
 
-Features:
+### Ghostty
 
-- Gruvbox Dark color scheme
-- Multi-line prompt
-- OS icon display
-- Username always shown
-- Directory with substitutions (Documents, Downloads, etc.)
-- Git branch and status
-- Language version indicators (Node, Python, Rust, Go, etc.)
-- Docker context
-- Time display
-- Vim mode indicators
+`ghostty/config` — terminal emulator. Theme: Builtin Solarized Dark. Font: Terminess Nerd Font Mono.
 
-### Rofi
+### Neovim
 
-**Location**: `rofi/`
+`nvim/init.lua` — single-file config, no distribution (not LazyVim). Uses Neovim's built-in `vim.pack` for plugin management (mini.nvim, fzf-lua, nvim-tree, treesitter, nvim-lspconfig, mason, blink.cmp, LuaSnip). Colorscheme is `habamax` with a transparent background — outside the Solarized theming convention used by the other tools.
 
-Modern application launcher and menu system with Tokyo Night Storm theme.
+### OpenCode
 
-Features:
+`opencode/` — AI coding agent config (Bun/Node.js). Solarized Dark theme (`opencode/themes/solarized-dark.json`). `opencode/plugins/herdr-agent-state.js` is vendored by herdr's opencode integration and gets overwritten on integration updates — don't hand-edit it; add custom hooks in a sibling file instead.
 
-- **Grid Layout**: 5x4 grid displaying 20 apps at once
-- **Application Icons**: Large 64px icons with app names
-- **Search Bar**: Fast fuzzy search with placeholder text
-- **Multiple Modes**:
-  - `drun`: Application launcher (default)
-  - `run`: Command runner
-  - `window`: Window switcher
-  - `filebrowser`: File browser
-- **Styling**:
-  - Rounded corners (16px border radius)
-  - Transparency with blur support
-  - Color-coded selection (cyan highlight)
-  - Smooth hover states
-- **Alphabetical Sorting**: Apps sorted alphabetically for easy finding
-- **Icon Theme**: Papirus-Dark icon set
+### Xresources
 
-Usage:
+`Xresources` — X11 Xft DPI/antialiasing settings for the HiDPI laptop display (see Installation above).
 
-- `Mod+r`: Open application launcher
-- Type to search, arrow keys to navigate, Enter to launch
-- Esc to cancel
+### Corne keyboard firmware
 
-Configuration:
+`corne-zmk-config/` is a git submodule — ZMK firmware for a Corne split keyboard, built via GitHub Actions (no local build). See its own `AGENTS.md` for keymap and flashing details.
 
-- Main config: `rofi/config.rasi`
-- Theme: `rofi/tokyo-night-storm.rasi`
-- Customize: grid size (columns/lines), icon size, colors, fonts
+## Theme consistency
 
-### Lock Screen
+Solarized Dark hex values are hardcoded per config file (no shared source, by design — see [ADR-0001](docs/adr/0001-palette-hex-duplicated-per-config.md)). When changing colors, update all files. Key colors: bg `#073642`, fg `#fdf6e3`, blue `#268bd2`, cyan `#2aa198`, magenta `#d33682`, green `#859900`, yellow `#b58900`, red `#dc322f`, orange `#cb4b16`, base01 (comments/dim) `#586e75`, base0 (foreground) `#839496`. Terminal background is `#002b36` (base03). Neovim is the current exception (see above).
 
-**Location**: `scripts/lock.sh`
+## Agent guidance
 
-Custom i3lock-color screen locker with blurred wallpaper and live clock display.
-
-Features:
-
-- **Live Updating Clock**: Displays current time in 12-hour format with AM/PM (e.g., 02:30:45 PM)
-- **Date Display**: Shows full day and date (e.g., "Wednesday, October 29")
-- **Blurred Wallpaper**: Scales wallpaper to full screen (2560x1600) with medium blur effect
-- **Tokyo Night Storm Colors**: 
-  - Cyan blue clock and unlock ring (#7aa2f7)
-  - Dark background with transparency (#1a1b26)
-  - Red highlight for wrong password (#f7768e)
-- **Centered Indicator**: 120px radius circle with 8px ring width
-- **Custom Fonts**: JetBrainsMono Nerd Font (72px time, 24px date)
-
-Usage:
-
-- `Mod+l`: Quick lock screen
-- Power menu → Lock option
-- Or run directly: `~/dotfiles/scripts/lock.sh`
-
-Requirements:
-
-- **i3lock-color**: Enhanced screen locker with clock/color support
-- **ImageMagick**: For blur and wallpaper scaling (`convert` command)
-
-Install dependencies:
-
-```bash
-# Ubuntu/Debian - Build i3lock-color from source
-sudo apt install -y autoconf gcc make pkg-config libpam0g-dev libcairo2-dev \
-  libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev \
-  libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev \
-  libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev
-
-cd /tmp
-git clone https://github.com/Raymo111/i3lock-color.git
-cd i3lock-color
-./install-i3lock-color.sh
-
-# Also install ImageMagick
-sudo apt install imagemagick
-
-# Arch
-yay -S i3lock-color imagemagick
-
-# Fedora
-sudo dnf copr enable admiralnemo/i3lock-color
-sudo dnf install i3lock-color ImageMagick
-```
-
-### Kanata
-
-**Location**: `kanata/kanata.kbd`
-
-Features:
-
-- Tarmak progressive layout for transitioning from QWERTY to Colemak-DH
-- Layers: QWERTY → Tarmak1 → Tarmak2 → Tarmak3 → Tarmak4 → Colemak-DH
-- Caps Lock mapped to Escape (tap) / Layer switch (hold)
-- Quick layer switching with Caps+number keys
-
-Layer switching:
-
-- Caps+1: Tarmak1
-- Caps+2: Tarmak2
-- Caps+3: Tarmak3
-- Caps+4: Tarmak4
-- Caps+5: Colemak-DH
-- Caps+0: QWERTY
-
-### Power Menu
-
-**Location**: `scripts/powermenu.sh`
-
-Features:
-
-- Tokyo Night Storm themed rofi interface
-- Options: Lock, Logout, Reboot, Shutdown, Suspend
-- Confirmation prompts for destructive actions (reboot/shutdown)
-- JetBrainsMono Nerd Font icons
-- Integration with systemctl for power management
-
-Usage:
-
-- `Mod+Shift+e`: Open power menu
-- Or run directly: `~/dotfiles/scripts/powermenu.sh`
-
-The power menu integrates with the custom lock screen script (`scripts/lock.sh`) which uses i3lock-color. See the Lock Screen section for installation details.
-
-### GNOME Extensions (if applicable)
-
-**Location**: `extensions.txt`
-
-The extensions file contains settings for various GNOME Shell extensions including blur-my-shell, dash-to-dock, tiling-assistant, and others configured with custom themes and behaviors.
-
-## Keybindings Philosophy
-
-All tools use **Vim-style hjkl navigation** where possible:
-
-- Qtile: hjkl for window navigation
-- Zsh: Vi mode enabled
-- Neovim: Native Vim keybindings
-
-## Customization
-
-### Change Theme
-
-To change from Tokyo Night Storm to another theme:
-
-1. Update Ghostty config with desired theme name
-2. Modify Qtile color palette in `config.py`
-3. Update Zsh syntax highlighting colors in `.zshrc`
-
-### Modify Keybindings
-
-- **Qtile**: Edit `keys` list in `qtile/config.py`
-- **Kanata**: Edit layer definitions in `kanata/kanata.kbd`
-
-## Troubleshooting
-
-### Fonts not rendering correctly
-
-Install JetBrainsMono Nerd Font:
-
-```bash
-# Download from https://www.nerdfonts.com/
-# Or use your package manager
-```
-
-### Kanata not working
-
-Ensure Kanata daemon is running and you have proper permissions for input devices.
-
-## License
-
-MIT License - See LICENSE file
-
-## Credits
-
-- [Tokyo Night](https://github.com/enkia/tokyo-night-vscode-theme) - Color scheme
-- [Gruvbox](https://github.com/morhetz/gruvbox) - Starship color scheme
-- [LazyVim](https://github.com/LazyVim/LazyVim) - Neovim configuration
-- [Oh My Zsh](https://ohmyz.sh/) - Zsh framework
-- [Starship](https://starship.rs/) - Shell prompt
-- [Tarmak](https://dreymar.colemak.org/tarmak.html) - Progressive keyboard layout learning
+See `CLAUDE.md` for how AI coding agents (Claude Code, etc.) should work in this repo — commit conventions, code style, and the issue-tracker/domain-doc skills.
