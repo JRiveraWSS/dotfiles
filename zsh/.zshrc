@@ -11,6 +11,7 @@
 # History
 
 HISTFILE="$XDG_STATE_HOME/zsh/history"
+mkdir -p "${HISTFILE:h}"
 HISTSIZE=100000
 SAVEHIST=100000
 
