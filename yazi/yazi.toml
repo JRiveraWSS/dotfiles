@@ -1,0 +1,6 @@
+[mgr]
+show_hidden = true
+
+[preview]
+image_filter = "triangle"
+image_quality = 75

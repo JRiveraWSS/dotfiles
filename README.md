@@ -11,6 +11,7 @@ zsh/                # Zsh config (symlinked to ~/.config/zsh)
 starship.toml       # Starship prompt
 ghostty/            # Ghostty terminal emulator
 nvim/               # Neovim config (native vim.pack, no plugin-manager framework)
+yazi/               # Yazi file manager config (symlinked to ~/.config/yazi)
 opencode/           # OpenCode AI plugin (Bun/Node.js)
 Xresources          # X11 Xft DPI settings for HiDPI display
 corne-zmk-config/   # Git submodule: Corne split keyboard firmware (ZMK)
@@ -24,8 +25,11 @@ No install script. Setup is manual symlinks:
 ln -sf ~/dotfiles/zsh ~/.config/zsh
 ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config
 ln -sf ~/dotfiles/nvim ~/.config/nvim
+ln -sf ~/dotfiles/yazi ~/.config/yazi
 ln -sf ~/dotfiles/Xresources ~/.Xresources
 ```
+
+Yazi plugins (declared in `yazi/package.toml`) aren't vendored in the repo — restore them with `ya pkg install` after symlinking.
 
 **Ubuntu/Debian only:** `apt install bat` names the binary `batcat`. Add a shim so configs can call `bat` directly:
 
