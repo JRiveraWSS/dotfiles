@@ -1,5 +1,5 @@
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("habamax")
+vim.o.background = "dark"
 
 local function set_transparent() -- set UI component to transparent
 	local groups = {
@@ -21,8 +21,6 @@ local function set_transparent() -- set UI component to transparent
 	end
 	vim.api.nvim_set_hl(0, "TabLineFill", { bg = "none", fg = "#767676" })
 end
-
-set_transparent()
 
 -- OPTIONS
 vim.opt.number = true -- line number
@@ -410,6 +408,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- PLUGINS (vim.pack)
 vim.pack.add({
+	"https://github.com/maxmx03/solarized.nvim",
 	"https://www.github.com/echasnovski/mini.nvim",
 	"https://www.github.com/ibhagwan/fzf-lua",
 	"https://github.com/nvim-lua/plenary.nvim",
@@ -431,6 +430,12 @@ vim.pack.add({
 })
 
 -- PLUGIN CONFIGS
+
+require("solarized").setup({
+	transparent = { enabled = true },
+})
+vim.cmd.colorscheme("solarized")
+set_transparent()
 
 local setup_treesitter = function()
 	local treesitter = require("nvim-treesitter")
