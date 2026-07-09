@@ -412,7 +412,8 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.pack.add({
 	"https://www.github.com/echasnovski/mini.nvim",
 	"https://www.github.com/ibhagwan/fzf-lua",
-	"https://www.github.com/nvim-tree/nvim-tree.lua",
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/mikavilpas/yazi.nvim",
 	{
 		src = "https://github.com/nvim-treesitter/nvim-treesitter",
 		branch = "main",
@@ -476,27 +477,18 @@ end
 
 setup_treesitter()
 
-require("nvim-tree").setup({
-	view = {
-		width = 35,
-	},
-	filters = {
-		dotfiles = false,
-	},
-	renderer = {
-		group_empty = true,
-	},
-})
-vim.keymap.set("n", "<leader>e", function()
-	require("nvim-tree.api").tree.toggle()
-end, { desc = "Toggle NvimTree" })
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
-vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
+require("yazi").setup({
+	open_for_directories = true,
+	floating_window_scaling_factor = 0.9,
+})
+vim.keymap.set("n", "<leader>e", "<cmd>Yazi cwd<cr>", { desc = "Open yazi (cwd)" })
+
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-vim.api.nvim_set_hl(0, "NvimTreeSignColumn", { bg = "none" })
-vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#2a2a2a", bg = "none" })
-vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#2a2a2a", bg = "none" })
 
 require("fzf-lua").setup({})
 
