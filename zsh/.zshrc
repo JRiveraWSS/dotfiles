@@ -82,10 +82,3 @@ export NVM_DIR="$HOME/.nvm"
 # Bun
 
 [[ -s "$BUN_INSTALL/_bun" ]] && source "$BUN_INSTALL/_bun"
-
-# Herdr
-
-# Autostart herdr in interactive, non-nested shells
-if [[ $- == *i* ]] && [[ -z "$HERDR_ENV" ]] && command -v herdr &>/dev/null; then
-  herdr
-fi
