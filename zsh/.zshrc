@@ -39,7 +39,16 @@ eval "$(zoxide init zsh)"
 autoload -Uz compinit
 
 # Initialize completion with cached metadata file
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
+ZCOMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump"
+mkdir -p "${ZCOMPDUMP:h}"
+# Only run the full security audit once every 24h; otherwise trust the
+# existing dump (-C) to avoid compaudit's cost on every shell start.
+if [[ -n "$ZCOMPDUMP"(#qN.mh+24) ]]; then
+  compinit -d "$ZCOMPDUMP"
+else
+  compinit -C -d "$ZCOMPDUMP"
+fi
+unset ZCOMPDUMP
 
 # Enable interactive completion menu selection
 zstyle ':completion:*' menu select
@@ -76,9 +85,26 @@ source "$ZDOTDIR/prompt.zsh"
 
 # Node / NVM
 
+# Lazy-load nvm: sourcing nvm.sh eagerly adds ~300ms to every shell start.
+# Defer it until node/npm/npx/nvm (or a project's package manager) is
+# actually invoked.
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+
+_nvm_lazy_load() {
+  local cmd
+  for cmd in nvm node npm npx yarn pnpm corepack; do
+    unfunction "$cmd" 2>/dev/null
+  done
+  [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+}
+
+for _cmd in node npm npx yarn pnpm corepack; do
+  eval "${_cmd}() { _nvm_lazy_load; command ${_cmd} \"\$@\"; }"
+done
+# nvm itself is a shell function, not an executable, so it can't go through `command`
+nvm() { _nvm_lazy_load; nvm "$@"; }
+unset _cmd
 
 # Bun
 
