@@ -272,6 +272,9 @@ vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yankin
 
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bd", function()
+	require("mini.bufremove").delete(0, false)
+end, { desc = "Close buffer" })
 
 vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { desc = "Move to left window/pane" })
 vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "Move to bottom window/pane" })
@@ -563,6 +566,26 @@ require("mini.trailspace").setup({})
 require("mini.bufremove").setup({})
 require("mini.notify").setup({})
 require("mini.icons").setup({})
+
+require("mini.tabline").setup({
+	show_icons = true, -- uses mini.icons, already configured
+	set_vim_settings = true, -- lets mini manage 'showtabline'
+})
+
+-- keep the tabline transparent to match the rest of the UI (preserve fg, drop bg)
+for _, g in ipairs({
+	"MiniTablineCurrent",
+	"MiniTablineVisible",
+	"MiniTablineHidden",
+	"MiniTablineModifiedCurrent",
+	"MiniTablineModifiedVisible",
+	"MiniTablineModifiedHidden",
+	"MiniTablineFill",
+}) do
+	local hl = vim.api.nvim_get_hl(0, { name = g, link = false })
+	hl.bg = "none"
+	vim.api.nvim_set_hl(0, g, hl)
+end
 
 require("mini.diff").setup({
 	view = {
