@@ -1,0 +1,15 @@
+onboarding = false
+
+[ui.toast]
+delivery = "system"
+
+[theme]
+name = "solarized"
+
+[ui]
+agent_panel_sort = "spaces"
+
+[experimental]
+# Enable Kitty graphics protocol in herdr panes so yazi (and snacks.image)
+# can render images. Off by default; requires fresh panes or server restart.
+kitty_graphics = true

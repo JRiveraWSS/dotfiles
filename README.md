@@ -14,6 +14,7 @@ nvim/               # Neovim config (native vim.pack, no plugin-manager framewor
 yazi/               # Yazi file manager config (symlinked to ~/.config/yazi)
 opencode/           # OpenCode AI plugin (Bun/Node.js)
 codex/              # Codex CLI config (symlinked to ~/.codex/config.toml)
+herdr/              # herdr terminal workspace manager config (symlinked to ~/.config/herdr/config.toml)
 Xresources          # X11 Xft DPI settings for HiDPI display
 corne-zmk-config/   # Git submodule: Corne split keyboard firmware (ZMK)
 ```
@@ -29,6 +30,7 @@ ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/yazi ~/.config/yazi
 ln -sf ~/dotfiles/Xresources ~/.Xresources
 ln -sf ~/dotfiles/codex/config.toml ~/.codex/config.toml
+ln -sf ~/dotfiles/herdr/config.toml ~/.config/herdr/config.toml
 ```
 
 Yazi plugins (declared in `yazi/package.toml`) aren't vendored in the repo — restore them with `ya pkg install` after symlinking.
@@ -74,6 +76,10 @@ Then log out and back in for full effect.
 ### Codex CLI
 
 `codex/config.toml` — symlinked to `~/.codex/config.toml`. Reads `AGENTS.md` (see Agent guidance below) for repo context, same as Claude Code.
+
+### herdr
+
+`herdr/config.toml` — symlinked to `~/.config/herdr/config.toml`. Terminal workspace/pane manager for AI coding agent sessions (replaces zellij in this setup). Solarized theme, system toast delivery, Kitty graphics protocol enabled experimentally so panes can render images (yazi, snacks.image).
 
 ### Xresources
 
