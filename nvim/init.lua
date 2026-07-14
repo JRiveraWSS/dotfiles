@@ -775,7 +775,7 @@ vim.lsp.config("lua_ls", {
 })
 vim.lsp.config("pyright", {})
 vim.lsp.config("bashls", {})
-vim.lsp.config("ts_ls", {})
+vim.lsp.config("vtsls", {})
 vim.lsp.config("clangd", {})
 
 vim.g.rustaceanvim = {
@@ -842,7 +842,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"pyright",
 	"bashls",
-	"ts_ls",
+	"vtsls",
 	"clangd",
 	"efm",
 })
