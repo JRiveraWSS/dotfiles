@@ -302,6 +302,10 @@ vim.keymap.set("n", "<leader>pa", function() -- show file path
 	print("file:", path)
 end, { desc = "Copy full file path" })
 
+vim.keymap.set("n", "<leader>pu", function()
+	vim.pack.update()
+end, { desc = "Update plugins" })
+
 vim.keymap.set("n", "<leader>td", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle diagnostics" })
@@ -418,6 +422,11 @@ vim.pack.add({
 		branch = "main",
 		build = ":TSUpdate",
 	},
+	{
+		src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+	},
+	"https://github.com/rafamadriz/friendly-snippets",
 	-- Language Server Protocols
 	"https://www.github.com/neovim/nvim-lspconfig",
 	"https://github.com/mason-org/mason.nvim",
@@ -481,6 +490,33 @@ local setup_treesitter = function()
 end
 
 setup_treesitter()
+
+require("nvim-treesitter-textobjects").setup({
+	select = { lookahead = true },
+	move = { set_jumps = true },
+})
+
+local ts_select = require("nvim-treesitter-textobjects.select")
+vim.keymap.set({ "x", "o" }, "af", function()
+	ts_select.select_textobject("@function.outer", "textobjects")
+end, { desc = "Select outer function" })
+vim.keymap.set({ "x", "o" }, "if", function()
+	ts_select.select_textobject("@function.inner", "textobjects")
+end, { desc = "Select inner function" })
+vim.keymap.set({ "x", "o" }, "ac", function()
+	ts_select.select_textobject("@class.outer", "textobjects")
+end, { desc = "Select outer class" })
+vim.keymap.set({ "x", "o" }, "ic", function()
+	ts_select.select_textobject("@class.inner", "textobjects")
+end, { desc = "Select inner class" })
+
+local ts_move = require("nvim-treesitter-textobjects.move")
+vim.keymap.set({ "n", "x", "o" }, "]f", function()
+	ts_move.goto_next_start("@function.outer", "textobjects")
+end, { desc = "Next function start" })
+vim.keymap.set({ "n", "x", "o" }, "[f", function()
+	ts_move.goto_previous_start("@function.outer", "textobjects")
+end, { desc = "Previous function start" })
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -669,6 +705,8 @@ vim.keymap.set("n", "<leader>q", function()
 	vim.diagnostic.setloclist({ open = true })
 end, { desc = "Open diagnostic list" })
 vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+
+require("luasnip.loaders.from_vscode").lazy_load()
 
 require("blink.cmp").setup({
 	keymap = {
