@@ -1,2 +1,2 @@
-(B) Decide which Claude Code skills/subagents to port to opencode/skills and opencode/agents +dotfiles @triage @needs-info
+x 2026-07-14 Decide which Claude Code skills/subagents to port to opencode/skills and opencode/agents +dotfiles @triage @needs-info
 (C) Decide whether to add a zellij config to the repo or leave it untracked +dotfiles @triage @needs-info

@@ -69,7 +69,7 @@ Then log out and back in for full effect.
 
 ### OpenCode
 
-`opencode/` — AI coding agent config (Bun/Node.js). Solarized Dark theme (`opencode/themes/solarized-dark.json`). `opencode/plugins/herdr-agent-state.js` is vendored by herdr's opencode integration and gets overwritten on integration updates — don't hand-edit it; add custom hooks in a sibling file instead.
+`opencode/` — AI coding agent config (Bun/Node.js). Solarized Dark theme (`opencode/themes/solarized-dark.json`). `opencode/plugins/herdr-agent-state.js` is vendored by herdr's opencode integration and gets overwritten on integration updates — don't hand-edit it; add custom hooks in a sibling file instead. `opencode/skills/` symlinks into the shared `~/.agents/skills/` store (the same skills Claude Code uses via `~/.claude/skills/`) so skill content lives in one place across tools.
 
 ### Codex CLI
 
