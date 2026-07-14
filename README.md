@@ -13,6 +13,7 @@ ghostty/            # Ghostty terminal emulator
 nvim/               # Neovim config (native vim.pack, no plugin-manager framework)
 yazi/               # Yazi file manager config (symlinked to ~/.config/yazi)
 opencode/           # OpenCode AI plugin (Bun/Node.js)
+codex/              # Codex CLI config (symlinked to ~/.codex/config.toml)
 Xresources          # X11 Xft DPI settings for HiDPI display
 corne-zmk-config/   # Git submodule: Corne split keyboard firmware (ZMK)
 ```
@@ -27,6 +28,7 @@ ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config
 ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/yazi ~/.config/yazi
 ln -sf ~/dotfiles/Xresources ~/.Xresources
+ln -sf ~/dotfiles/codex/config.toml ~/.codex/config.toml
 ```
 
 Yazi plugins (declared in `yazi/package.toml`) aren't vendored in the repo — restore them with `ya pkg install` after symlinking.
@@ -69,6 +71,10 @@ Then log out and back in for full effect.
 
 `opencode/` — AI coding agent config (Bun/Node.js). Solarized Dark theme (`opencode/themes/solarized-dark.json`). `opencode/plugins/herdr-agent-state.js` is vendored by herdr's opencode integration and gets overwritten on integration updates — don't hand-edit it; add custom hooks in a sibling file instead.
 
+### Codex CLI
+
+`codex/config.toml` — symlinked to `~/.codex/config.toml`. Reads `AGENTS.md` (see Agent guidance below) for repo context, same as Claude Code.
+
 ### Xresources
 
 `Xresources` — X11 Xft DPI/antialiasing settings for the HiDPI laptop display (see Installation above).
@@ -83,4 +89,4 @@ Solarized Dark hex values are hardcoded per config file (no shared source, by de
 
 ## Agent guidance
 
-See `CLAUDE.md` for how AI coding agents (Claude Code, etc.) should work in this repo — commit conventions, code style, and the issue-tracker/domain-doc skills.
+See `CLAUDE.md` for how AI coding agents (Claude Code, OpenCode, Codex CLI, etc.) should work in this repo — commit conventions, code style, and the issue-tracker/domain-doc skills. `AGENTS.md` is a symlink to `CLAUDE.md` so every tool reads the same, single source of truth.
