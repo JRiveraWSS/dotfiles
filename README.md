@@ -12,6 +12,7 @@ starship.toml       # Starship prompt
 ghostty/            # Ghostty terminal emulator
 nvim/               # Neovim config (native vim.pack, no plugin-manager framework)
 yazi/               # Yazi file manager config (symlinked to ~/.config/yazi)
+qutebrowser/        # qutebrowser config (symlinked to ~/.config/qutebrowser/config.py)
 opencode/           # OpenCode AI plugin (Bun/Node.js)
 codex/              # Codex CLI config (symlinked to ~/.codex/config.toml)
 herdr/              # herdr terminal workspace manager config (symlinked to ~/.config/herdr/config.toml)
@@ -28,12 +29,29 @@ ln -sf ~/dotfiles/zsh ~/.config/zsh
 ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config
 ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/yazi ~/.config/yazi
+ln -sf ~/dotfiles/qutebrowser/config.py ~/.config/qutebrowser/config.py
 ln -sf ~/dotfiles/Xresources ~/.Xresources
 ln -sf ~/dotfiles/codex/config.toml ~/.codex/config.toml
 ln -sf ~/dotfiles/herdr/config.toml ~/.config/herdr/config.toml
 ```
 
 Yazi plugins (declared in `yazi/package.toml`) aren't vendored in the repo — restore them with `ya pkg install` after symlinking.
+
+**qutebrowser:** Ubuntu 24.04's apt package is pinned at 2.5.4 (QtWebEngine 5.15 / **Chromium 87**, from 2020 — years of unpatched engine CVEs). Install a current build into an isolated env instead; `~/.local/bin` already precedes `/usr/bin` on `PATH`, so this shadows the apt binary:
+
+```sh
+uv tool install qutebrowser --with PyQt6 --with PyQt6-WebEngine --with adblock
+```
+
+GUI launchers read `.desktop` files, which resolve `qutebrowser` against the *session* PATH and can still find the apt binary. Pin it with a user-level override:
+
+```sh
+sed 's|^Exec=qutebrowser|Exec='"$HOME"'/.local/bin/qutebrowser|' \
+  /usr/share/applications/org.qutebrowser.qutebrowser.desktop \
+  > ~/.local/share/applications/org.qutebrowser.qutebrowser.desktop
+```
+
+Then run `:adblock-update` once inside qutebrowser to fetch the filter lists.
 
 **Ubuntu/Debian only:** `apt install bat` names the binary `batcat`. Add a shim so configs can call `bat` directly:
 
@@ -69,6 +87,16 @@ Then log out and back in for full effect.
 
 `nvim/init.lua` — single-file config, no distribution (not LazyVim). Uses Neovim's built-in `vim.pack` for plugin management (mini.nvim, fzf-lua, nvim-tree, treesitter, nvim-lspconfig, mason, blink.cmp, LuaSnip). Colorscheme is `habamax` with a transparent background — outside the Solarized theming convention used by the other tools.
 
+### qutebrowser
+
+`qutebrowser/config.py` — keyboard-driven browser, Solarized Dark, symlinked to `~/.config/qutebrowser/config.py`. `config.load_autoconfig(False)` makes this file the sole source of truth, so `:set` changes made at runtime are deliberately not persisted — edit the file and `:config-source` (bound to `,c`).
+
+Stock qutebrowser keybindings are left intact so motions match `nvim/init.lua`, which also keeps vim's default `hjkl`/`n`/`K` despite Colemak DH typing. The one Colemak DH concession is `hints.chars = "arstneio"` — the letters the Colemak DH home row actually emits, replacing the QWERTY-home-row default `asdfghjkl`. Hints are labels you read rather than motions, so this costs no muscle memory. A commented-out full Colemak DH navigation block sits at the bottom of the config if that ever changes.
+
+Additive bindings live on the free `,` prefix: `,c` reload config, `,C` edit config, `,d` toggle forced dark mode, `,b` toggle ad blocking, `,m` play the current page in mpv, `;m` play a hinted link in mpv, `xb`/`xt` toggle status/tab bars.
+
+`Ctrl-E` in insert mode opens the focused text field in Neovim (via a spawned Ghostty window) and writes it back on save.
+
 ### OpenCode
 
 `opencode/` — AI coding agent config (Bun/Node.js). Solarized Dark theme (`opencode/themes/solarized-dark.json`). `opencode/plugins/herdr-agent-state.js` is vendored by herdr's opencode integration and gets overwritten on integration updates — don't hand-edit it; add custom hooks in a sibling file instead. `opencode/skills/` symlinks into the shared `~/.agents/skills/` store (the same skills Claude Code uses via `~/.claude/skills/`) so skill content lives in one place across tools.
@@ -91,7 +119,7 @@ Then log out and back in for full effect.
 
 ## Theme consistency
 
-Solarized Dark hex values are hardcoded per config file (no shared source, by design — see [ADR-0001](docs/adr/0001-palette-hex-duplicated-per-config.md)). When changing colors, update all files. Key colors: bg `#073642`, fg `#fdf6e3`, blue `#268bd2`, cyan `#2aa198`, magenta `#d33682`, green `#859900`, yellow `#b58900`, red `#dc322f`, orange `#cb4b16`, base01 (comments/dim) `#586e75`, base0 (foreground) `#839496`. Terminal background is `#002b36` (base03). Neovim is the current exception (see above).
+Solarized Dark hex values are hardcoded per config file (no shared source, by design — see [ADR-0001](docs/adr/0001-palette-hex-duplicated-per-config.md)). When changing colors, update all files. Key colors: bg `#073642`, fg `#fdf6e3`, blue `#268bd2`, cyan `#2aa198`, magenta `#d33682`, green `#859900`, yellow `#b58900`, red `#dc322f`, orange `#cb4b16`, base01 (comments/dim) `#586e75`, base0 (foreground) `#839496`. Terminal background is `#002b36` (base03). Neovim is the current exception (see above). qutebrowser defines the palette as named Python variables at the top of `qutebrowser/config.py`.
 
 ## Agent guidance
 
