@@ -21,6 +21,11 @@ zplugin-update() {
   done
 }
 
+# Solarized Dark maps color 8 to #002b36, which is also the terminal
+# background, so the plugin's default fg=8 renders suggestions invisibly in
+# Ghostty. Pin base01 explicitly instead of trusting the palette slot.
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#586e75"
+
 _zplugin_load zsh-users zsh-autosuggestions
 _zplugin_load zsh-users zsh-history-substring-search
 _zplugin_load jeffreytse zsh-vi-mode
