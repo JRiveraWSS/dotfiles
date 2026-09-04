@@ -1,0 +1,3 @@
+[submodule "corne-zmk-config"]
+	path = corne-zmk-config
+	url = https://github.com/jhonaRiver/corne-zmk-config.git
