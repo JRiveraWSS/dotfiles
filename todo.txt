@@ -1,2 +1,3 @@
 x 2026-07-14 Decide which Claude Code skills/subagents to port to opencode/skills and opencode/agents +dotfiles @triage @needs-info
 x 2026-07-14 zellij replaced by herdr for terminal workspace management; herdr config now tracked in herdr/ +dotfiles @triage @needs-info
+x 2026-09-04 Drop zsh plugin gitlinks, add corne submodule, add install.sh, fix fzf typo, split nvim init.lua +dotfiles @triage @needs-info

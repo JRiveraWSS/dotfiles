@@ -21,7 +21,14 @@ corne-zmk-config/   # Git submodule: Corne split keyboard firmware (ZMK)
 
 ## Installation
 
-No install script. Setup is manual symlinks:
+One command, idempotent (safe to re-run):
+
+```sh
+./install.sh            # link configs, check prereqs, apply one-off fixes
+./install.sh --check    # dry run: show what would change without touching anything
+```
+
+`install.sh` links the config dirs/files below (`--skip-hidpi` skips the gnome scaling block). Manual fallback:
 
 ```sh
 ln -sf ~/dotfiles/zsh ~/.config/zsh
@@ -29,11 +36,12 @@ ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config
 ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/yazi ~/.config/yazi
 ln -sf ~/dotfiles/qutebrowser/config.py ~/.config/qutebrowser/config.py
+ln -sf ~/dotfiles/opencode ~/.config/opencode
 ln -sf ~/dotfiles/Xresources ~/.Xresources
 ln -sf ~/dotfiles/codex/config.toml ~/.codex/config.toml
 ```
 
-Yazi plugins (declared in `yazi/package.toml`) aren't vendored in the repo — restore them with `ya pkg install` after symlinking.
+The zsh plugins (`zsh/plugins/*`) and yazi plugins (`yazi/plugins/`) aren't vendored in the repo. Restore yazi plugins with `ya pkg install`; the zsh plugin loader (`zsh/plugins.zsh`) clones its own on first shell start. `corne-zmk-config` is a real submodule (`git submodule update --init` if missing).
 
 **qutebrowser:** Ubuntu 24.04's apt package is pinned at 2.5.4 (QtWebEngine 5.15 / **Chromium 87**, from 2020 — years of unpatched engine CVEs). Install a current build into an isolated env instead; `~/.local/bin` already precedes `/usr/bin` on `PATH`, so this shadows the apt binary:
 
@@ -83,7 +91,7 @@ Then log out and back in for full effect.
 
 ### Neovim
 
-`nvim/init.lua` — single-file config, no distribution (not LazyVim). Uses Neovim's built-in `vim.pack` for plugin management (mini.nvim, fzf-lua, nvim-tree, treesitter, nvim-lspconfig, mason, blink.cmp, LuaSnip). Colorscheme is `habamax` with a transparent background — outside the Solarized theming convention used by the other tools.
+`nvim/init.lua` — thin loader for the config modules in `nvim/lua/config/` (options, keymaps, autocmds, theme, statusline, treesitter, plugins, lsp, terminal). No distribution (not LazyVim), uses Neovim's built-in `vim.pack` for plugin management (mini.nvim, fzf-lua, yazi, treesitter, nvim-lspconfig, mason, efm, blink.cmp, LuaSnip). Colorscheme is `solarized` via `maxmx03/solarized.nvim` with a transparent background so the terminal's Solarized Dark shows through.
 
 ### qutebrowser
 

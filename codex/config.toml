@@ -1,2 +1,11 @@
 [features]
 hooks = true
+
+[projects."/home/jrivera/Projects/logo-maker"]
+trust_level = "trusted"
+
+[projects."/home/jrivera/Projects/scripts/local-gateway"]
+trust_level = "trusted"
+
+[projects."/home/jrivera/dotfiles"]
+trust_level = "trusted"

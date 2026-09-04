@@ -5,7 +5,7 @@ status: accepted
 # Palette hex values stay duplicated per config, not generated from one source
 
 Solarized Dark hex values are hand-copied across `ghostty/config`,
-`starship.toml`, `nvim/lua/plugins/colorscheme.lua`,
+`starship.toml`, `nvim/lua/config/theme.lua`,
 `opencode/themes/solarized-dark.json`, and `Xresources`, each in that tool's
 native format. A single palette source with a generator per tool was
 considered (and reviewed during an `/improve-codebase-architecture` pass) as a
