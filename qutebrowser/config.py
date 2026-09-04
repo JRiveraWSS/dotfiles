@@ -133,8 +133,8 @@ c.url.searchengines = {
     "w": "https://en.wikipedia.org/w/index.php?search={}",
 }
 
-c.url.default_page = "about:blank"
-c.url.start_pages = ["about:blank"]
+c.url.default_page = "about:blank"  # new empty tabs stay blank
+c.url.start_pages = ["https://www.google.com"]  # also what :home / gh loads
 
 # ---------------------------------------------------------------------------
 # Key bindings
@@ -152,7 +152,7 @@ config.bind(";m", "hint links spawn --detach mpv {hint-url}")  # play a linked v
 config.bind(",b", "config-cycle content.blocking.enabled ;; reload")
 config.bind("xb", "config-cycle statusbar.show always never")
 config.bind("xt", "config-cycle tabs.show always never")
-config.bind("gh", "open https://duckduckgo.com")
+config.bind("gh", "home")  # follows url.start_pages[0], same as the default <Ctrl-H>
 
 # --- Optional: Colemak DH navigation ---------------------------------------
 # Only enable if you ALSO remap nvim; mixing schemes is worse than either one.
