@@ -15,7 +15,6 @@ yazi/               # Yazi file manager config (symlinked to ~/.config/yazi)
 qutebrowser/        # qutebrowser config (symlinked to ~/.config/qutebrowser/config.py)
 opencode/           # OpenCode AI plugin (Bun/Node.js)
 codex/              # Codex CLI config (symlinked to ~/.codex/config.toml)
-herdr/              # herdr terminal workspace manager config (symlinked to ~/.config/herdr/config.toml)
 Xresources          # X11 Xft DPI settings for HiDPI display
 corne-zmk-config/   # Git submodule: Corne split keyboard firmware (ZMK)
 ```
@@ -32,7 +31,6 @@ ln -sf ~/dotfiles/yazi ~/.config/yazi
 ln -sf ~/dotfiles/qutebrowser/config.py ~/.config/qutebrowser/config.py
 ln -sf ~/dotfiles/Xresources ~/.Xresources
 ln -sf ~/dotfiles/codex/config.toml ~/.codex/config.toml
-ln -sf ~/dotfiles/herdr/config.toml ~/.config/herdr/config.toml
 ```
 
 Yazi plugins (declared in `yazi/package.toml`) aren't vendored in the repo — restore them with `ya pkg install` after symlinking.
@@ -99,15 +97,11 @@ Additive bindings live on the free `,` prefix: `,c` reload config, `,C` edit con
 
 ### OpenCode
 
-`opencode/` — AI coding agent config (Bun/Node.js). Solarized Dark theme (`opencode/themes/solarized-dark.json`). `opencode/plugins/herdr-agent-state.js` is vendored by herdr's opencode integration and gets overwritten on integration updates — don't hand-edit it; add custom hooks in a sibling file instead. `opencode/skills/` symlinks into the shared `~/.agents/skills/` store (the same skills Claude Code uses via `~/.claude/skills/`) so skill content lives in one place across tools.
+`opencode/` — AI coding agent config (Bun/Node.js). Solarized Dark theme (`opencode/themes/solarized-dark.json`). `opencode/skills/` symlinks into the shared `~/.agents/skills/` store (the same skills Claude Code uses via `~/.claude/skills/`) so skill content lives in one place across tools.
 
 ### Codex CLI
 
 `codex/config.toml` — symlinked to `~/.codex/config.toml`. Reads `AGENTS.md` (see Agent guidance below) for repo context, same as Claude Code.
-
-### herdr
-
-`herdr/config.toml` — symlinked to `~/.config/herdr/config.toml`. Terminal workspace/pane manager for AI coding agent sessions (replaces zellij in this setup). Solarized theme, system toast delivery, Kitty graphics protocol enabled experimentally so panes can render images (yazi, snacks.image).
 
 ### Xresources
 

@@ -109,3 +109,6 @@ unset _cmd
 # Bun
 
 [[ -s "$BUN_INSTALL/_bun" ]] && source "$BUN_INSTALL/_bun"
+
+# bun completions
+[ -s "/home/jrivera/.bun/_bun" ] && source "/home/jrivera/.bun/_bun"
