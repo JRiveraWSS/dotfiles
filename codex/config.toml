@@ -9,3 +9,8 @@ trust_level = "trusted"
 
 [projects."/home/jrivera/dotfiles"]
 trust_level = "trusted"
+
+[hooks.state]
+
+[hooks.state."/home/jrivera/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:2f848e7bcdfd7a2021d1126247b3cbfec52a3ed94547571c77fa857edee4ce08"
